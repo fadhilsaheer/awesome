@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- font awesome  -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css"
+    />
+    <!-- bootsrap  -->
+    <!-- CSS only -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
+      crossorigin="anonymous"
+    />
+    <!-- JavaScript Bundle with Popper -->
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+      crossorigin="anonymous"
+    ></script>
+    <!-- custom css  -->
+    <link rel="stylesheet" href="./assets/css/style.css" />
+    <title>All Chats</title>
+  </head>
+  <body>
+    <center>
+      <div class="chats">
+        <div class="user"></div>
+        <div class="clients"></div>
+      </div>
+    </center>
+
+    <div class="chatbox">
+      <!--chats-->
+      <div class="messages">
+        <div class="container-fluid h-100">
+          <div class="row justify-content-center h-100">
+            <div class="col-md-4 col-xl-3 chat">
+              <div class="card mb-sm-3 mb-md-0 contacts_card">
+                <div class="card-header">
+                  <div class="input-group">
+                    <!-- <input
+                      type="text"
+                      placeholder="Search..."
+                      name=""
+                      class="form-control search"
+                    />
+                    <div class="input-group-prepend">
+                      <span class="input-group-text search_btn"
+                        ><i class="fas fa-search"></i
+                      ></span>
+                    </div> -->
+                    <h4>chats <i class="fas fa-quote-left"></i></h4>
+                  </div>
+                </div>
+                <div class="card-body contacts_body">
+                  <ul class="contacts">
+                    <li class="pointer" onclick="joinRoom('public')">
+                      <div class="d-flex bd-highlight">
+                        <div class="img_cont">
+                          <img src="https://img.icons8.com/nolan/64/ioxhost.png" class="user_img" />
+                          <!--<span class="online_icon offline"></span>-->
+                        </div>
+                        <div class="user_info">
+                          <span>Public</span>
+                          <p>public group</p>
+                        </div>
+                      </div>
+                    </li>
+                  </ul>
+                  <ul class="contacts" id="contacts"></ul>
+                </div>
+                <div class="card-footer"></div>
+              </div>
+            </div>
+            <div class="col-md-8 col-xl-6 chat">
+              <div class="card">
+                <div class="card-header msg_head">
+                  <div class="d-flex bd-highlight chat-details">
+                    <div class="img_cont">
+                      <img src="https://img.icons8.com/nolan/64/ioxhost.png" class="rounded-circle user_img" />
+
+                    </div>
+                    <div class="user_info">
+                      <span id="chat-user">Public</span>
+                    </div>
+                  </div>
+                </div>
+                <!--message-->
+                <div class="card-body msg_card_body messages-div"></div>
+                <div class="card-body msg_card_body feedback-div"></div>
+                <!--/message-->
+                <div class="card-footer">
+                  <div class="input-group">
+                    <input
+                    type="text"
+                      name=""
+                      class="form-control type_msg"
+                      placeholder="Type your message..."
+                    ></input>
+                    <button class="btn send-btn">
+                      <div class="input-group-append">
+                        <span class="input-group-text send_btn"
+                          ><i class="fas fa-location-arrow"></i
+                        ></span>
+                      </div>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- send message  -->
+      <div class="msgs">
+      </div>
+    </div>
+
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/3.1.0/socket.io.js"></script>
+    <script src="./assets/js/chats.js"></script>
+  </body>
+</html>
