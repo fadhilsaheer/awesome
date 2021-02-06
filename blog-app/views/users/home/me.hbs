@@ -1,0 +1,99 @@
+
+{{!-- navbar --}}
+
+<nav class="navbar navbar-expand-lg navbar-dark ">
+    <a class="navbar-brand" href="/">Unknown Post</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item dropdown active">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{user.name}}
+                </a>
+                <div class="dropdown-menu bg-transparent" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item feed-drop text-light" href="/users?id={{user._id}}">Me</a>
+                    <a class="dropdown-item feed-drop text-light" href="users/settings?id={{user._id}}">Settings</a>
+                    <a class="dropdown-item feed-drop text-light" href="/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{{!-- user details --}}
+
+<section class="me-user">
+    <center>
+        <h2>{{original_user}}</h2>
+        {{#if admin}}
+        <a href="/users/edit?id={{user._id}}" class="btn btn-outline-dark">Edit User</a>
+        {{/if}}
+    </center>
+</section>
+
+{{!-- newpost --}}
+
+{{#if admin}}
+
+<section class="me-new">
+    <a href="users/new?id={{user._id}}" class="btn me-new-btn"><i class="fa fa-plus" aria-hidden="true"></i></a>
+</section>
+
+{{/if}}
+
+
+{{#if admin}}
+
+<section class="me-feed feed-container">
+    {{#each feeds}}
+    {{#each this}}
+    {{#if this.name}}
+    <br>
+    <br>
+    <div class="card bg-dark" style="width: 100%;">
+        <div class="card-body">
+            <h5 class="card-title text-light">{{this.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-light">{{this.name}}</h6>
+            <p class="card-text text-light">{{this.content}}</p>
+            <a href="users/edit?id={{this._id}}&user={{this.id}}" class="card-link">Edit</a>
+            <a class="card-link text-danger" onclick="return swal('Are you sure ??', 'do you want to delete {{this.title}}','error').then((root)=>{if(root){ window.location.href = 'users/delete-post?id={{this._id}}&user={{this.id}}' } else { console.log('helo') }})">Delete</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    {{/if}}
+    {{/each}}
+    {{/each}}
+</section>
+
+{{else}}
+
+<section class="me-feed feed-container">
+    {{#each feeds}}
+    {{#each this}}
+    {{#if this.name}}
+    <br>
+    <br>
+    <div class="card bg-dark" style="width: 100%;">
+        <div class="card-body">
+            <h5 class="card-title text-light">{{this.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-light">{{this.name}}</h6>
+            <p class="card-text text-light">{{this.content}}</p>
+        </div>
+    </div>
+    <br>
+    <br>
+    {{/if}}
+    {{/each}}
+    {{/each}}
+</section>
+
+{{/if}}

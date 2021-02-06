@@ -1,0 +1,281 @@
+{{!-- navbar --}}
+
+<style>
+    html {
+        scroll-behavior: smooth;
+    }
+
+    body {
+        background: #050708;
+        padding: 0;
+        margin: 0;
+    }
+
+    .me-user {
+        margin-top: 100px;
+        margin-bottom: 5px;
+    }
+
+    .icon {
+        font-size: 50px;
+        transition: 0.5s;
+    }
+
+    .icon:hover {
+        color: aliceblue;
+    }
+
+    .col {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .text-bottom {
+        padding-top: 20px;
+    }
+
+    .ls-head {
+        align-items: center;
+        margin-top: 120px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+        margin-bottom: 120px;
+    }
+
+    .ls-input {
+        width: 100%;
+        height: 50px;
+        outline: none;
+        padding-left: 20px;
+        background: #101318;
+        color: white;
+        border: 2px solid #131c1a;
+        border-radius: 20px;
+        transition: 0.5s;
+    }
+
+    .ls_btn {
+        border: 2px solid #131c1a;
+        border-radius: 20px;
+        padding-left: 20px;
+        padding-right: 20px;
+        transition: 0.5s;
+    }
+
+    .width-100 {
+        width: 50%;
+    }
+
+
+    .ls_btn:hover {
+        border: 2px solid #2a574d;
+    }
+
+    .ls-input:focus {
+        border: 2px solid #2a574d;
+    }
+
+
+    .ls-a {
+        transition: 0.5s;
+    }
+
+    .ls-a:hover {
+        color: #2a574d;
+    }
+
+
+
+    @media only screen and (max-width: 436px) {
+        .width-100 {
+            width: 100%;
+        }
+    }
+
+    .padding {
+        padding-left: 20px;
+        padding-right: 20px;
+    }
+
+    #change-pass {
+        display: none;
+    }
+    #hide{
+        display: none;
+    }
+</style>
+
+<nav class="navbar navbar-expand-lg navbar-dark ">
+    <a class="navbar-brand" href="#">Unknown Post</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{user.name}}
+                </a>
+                <div class="dropdown-menu bg-transparent" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item feed-drop text-light" href="/users?id={{user._id}}">Me</a>
+                    <a class="dropdown-item feed-drop text-light" href="/settings?id={{user._id}}">Settings</a>
+                    <a class="dropdown-item feed-drop text-light" href="/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{{!-- page --}}
+
+<section class="me-user">
+    <center>
+        <h1>{{user.name}}</h1>
+    </center>
+</section>
+
+
+<section class="me-user" id="main">
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <button class="btn" onclick="changePass()">
+                    <i class="icon fas fa-lock"></i>
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn" onclick="deleteAllPost()">
+                    <i class="icon fas fa-trash-alt"></i>
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn" onclick="deleteAccount()">
+                    <i class="icon fas fa-user-times"></i>
+                </button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col">
+                <button class="btn" onclick="changePass()">
+                    <h6 class="text-bottom">Change Password</h6>
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn">
+                    <h6 class="text-bottom" onclick="deleteAllPost()">Delete All Posts</h6>
+                </button>
+            </div>
+            <div class="col">
+                <button class="btn" onclick="deleteAccount()">
+                    <h6 class="text-bottom">Delete Account</h6>
+                </button>
+            </div>
+        </div>
+    </div>
+</section>
+
+{{!-- hiddenform --}}
+
+<section id="hide">
+    <p id="err">{{err}}</p>
+</section>
+
+<br><br><br><br><br><br><br><br><br><br><br><br>
+
+<a name="pass"></a>
+<section class="me-user" id="change-pass">
+    <section class="ls-head">
+        <h1><i class="fas fa-key"></i> Change Password</h1>
+    </section>
+
+
+    <section class="ls-head">
+        <div class="align-content-center width-100">
+            <form action="/users/change?id={{user._id}}" method="POST">
+                {{#if err}}
+                <p class="login-err-text">Password does not match</p>
+                {{/if}}
+                <input type="password" class="ls-input" placeholder="New password" name="p1" autocomplete="off"
+                    required="">
+                <br>
+                <br>
+                <br>
+                <input type="password" class="ls-input" placeholder="Retype password" name="p2" autocomplete="off"
+                    required="">
+                <br>
+                <br>
+                <br>
+                <input type="submit" value="Change" class="btn ls_btn">
+                <a onclick="thisScreen()" class="btn ls-a float-right">don't have to change password</a>
+            </form>
+        </div>
+    </section>
+</section>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+
+<script>
+
+
+    function thisScreen() {
+        window.location.reload()
+    }
+
+
+    function changePass() {
+        let toHide = document.getElementById('main')
+        toHide.style.display = "none";
+
+        let toShow = document.getElementById("change-pass")
+
+        toShow.style.display = "block"
+        window.location.href = "#pass"
+    }
+
+    function deleteAllPost() {
+        swal("Are you sure ??", "all you post will be deleted", "error").then((permission) => {
+            if (permission) {
+                window.location.href = `/users/delete?root=${permission}`
+            } else {
+                window.location.reload()
+            }
+        })
+    }
+
+    function deleteAccount() {
+        swal("Are you sure ??", "do you wan't to delete you account").then((permission) => {
+            if (permission) {
+                swal({
+                    text: 'Enter Your Password',
+                    content: "input",
+                    button: {
+                        text: "Approve",
+                    },
+                }).then((password)=>{
+                    window.location.href = `/delete?root=${password}`
+                })
+
+            } else {
+                window.location.reload()
+            }
+        })
+    }
+
+    function getUser(){
+        let err = document.getElementById("err").innerText
+        if(err == 'true'){
+            swal("Password is incorrect", "entered password is incorrect" , "error")
+        }
+    }
+
+    getUser()
+
+</script>

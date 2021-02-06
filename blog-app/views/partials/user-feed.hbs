@@ -1,0 +1,92 @@
+{{!-- navbar --}}
+
+<nav class="navbar navbar-expand-lg navbar-dark ">
+    <a class="navbar-brand" href="#">Unknown Post</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown"
+                    aria-haspopup="true" aria-expanded="false">
+                    {{user.name}}
+                </a>
+                <div class="dropdown-menu bg-transparent" aria-labelledby="navbarDropdown">
+                    <a class="dropdown-item feed-drop text-light" href="/users?id={{user._id}}">Me</a>
+                    <a class="dropdown-item feed-drop text-light" href="users/settings?id={{user._id}}">Settings</a>
+                    <a class="dropdown-item feed-drop text-light" href="/logout">Logout</a>
+                </div>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+{{!-- feeds --}}
+
+<section class="feed-container">
+
+    {{#if isNotPost}}
+
+    <center>
+        <h1>looks like there is nothing to read</h1><br>
+        <div id="carouselExampleControls" class="carousel slide" data-ride="carousel" data-interval="2000">
+            <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <i class="homescreen-icon fas fa-angry"></i>
+                </div>
+
+                <div class="carousel-item">
+                    <i class="homescreen-icon fas fa-meh"></i>
+                </div>
+
+                <div class="carousel-item">
+                    <i class="homescreen-icon fas fa-frown"></i>
+                </div>
+
+                <div class="carousel-item">
+                    <i class="homescreen-icon fas fa-sad-tear"></i>
+                </div>
+
+                <div class="carousel-item">
+                    <i class="homescreen-icon fas fa-sad-cry"></i>
+                </div>
+            </div>
+        </div>
+        <br>
+        <br>
+        <br>
+        <a href="users/new?id={{user._id}}" class="btn btn-outline-dark"><i class="fas fa-paste"></i> Create Post</a>
+    </center>
+
+    {{else}}
+
+    {{#each feeds}}
+    {{#each this}}
+    {{#if this.name}}
+    <br>
+    <br>
+    <div class="card bg-dark" style="width: 100%;">
+        <div class="card-body">
+            <h5 class="card-title text-light">{{this.title}}</h5>
+            <h6 class="card-subtitle mb-2 text-muted text-light">{{this.name}}</h6>
+            <p class="card-text text-light">{{this.content}}</p>
+            <a href="/users?id={{this.id}}" class="card-link text-def">View User</a>
+        </div>
+    </div>
+    <br>
+    <br>
+    {{/if}}
+    {{/each}}
+    {{/each}}
+
+    {{/if}}
+
+
+
+</section>

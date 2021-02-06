@@ -1,0 +1,52 @@
+{{!-- navbar --}}
+
+<nav class="navbar navbar-expand-lg navbar-dark ">
+    <a class="navbar-brand" href="#">Unknown Post</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+        aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+        <ul class="navbar-nav ml-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="/">Home </a>
+            </li>
+            <li class="nav-item active">
+                <a class="nav-link" href="/login">Login<span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/signup">Signup</a>
+            </li>
+        </ul>
+    </div>
+</nav>
+
+
+{{!-- page --}}
+
+<section class="ls-head">
+    <h1><i class="fas fa-key"></i> Login</h1>
+</section>
+
+
+<section class="ls-head">
+    <div class="align-content-center width-100">
+        <form action="/login" method="POST">
+            {{#if err}}
+            <p class="login-err-text">Invalid email or password</p>
+            {{/if}}
+            <input type="email" class="ls-input" placeholder="Email" name="email" autocomplete="off" required="">
+            <br>
+            <br>
+            <br>
+            <input type="password" class="ls-input" placeholder="Password" name="password" autocomplete="off"
+                required="">
+            <br>
+            <br>
+            <br>
+            <input type="submit" value="Login" class="btn ls_btn">
+            <a href="/signup" class="btn ls-a float-right">don't have an account</a>
+        </form>
+    </div>
+</section>
