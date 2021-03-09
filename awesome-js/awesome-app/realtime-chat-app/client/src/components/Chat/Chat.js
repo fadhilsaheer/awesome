@@ -56,7 +56,7 @@ const Chat = ({ location }) => {
             setUsers(users);
         });
 
-    }, [])
+    }, [messages])
 
 
     // function for sending message
