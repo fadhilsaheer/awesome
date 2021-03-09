@@ -5,6 +5,7 @@ const http = require("http");
 const { addUser, getUser, getUsersInRoom, removeUser } = require("./users");
 
 const router = require("./router");
+const { use } = require("./router");
 
 const app = express();
 const server = http.createServer(app);
@@ -17,10 +18,13 @@ io.on("connection", socket => {
 
         if(error) return callback(error);
 
-        socket.emit("message", { user: "Bot", text: `${user.name} welcome to the ${room} chat server` });
-        socket.broadcast.to(user.room).emit("message", { user: "Bot", text: `${name} has joined` })
+        socket.emit("message", { user: "Bot", text: `welcome ${user.name} to the ${room} chat server 😊` });
+        socket.broadcast.to(user.room).emit("message", { user: "Bot", text: `${name} has joined the gang 😎` })
 
         socket.join(user.room);
+
+        io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+
         callback();
     });
 
@@ -33,7 +37,12 @@ io.on("connection", socket => {
     })
 
     socket.on("disconnect", () => {
-        console.log("user disconnected " + socket.id);
+        const user = removeUser(socket.id);
+
+        if(user){
+            io.to(user.room).emit("message", { user: "Bot", text: `${user.name} has left 😥` });
+            io.to(user.room).emit('roomData', { room: user.room, users: getUsersInRoom(user.room)});
+        }
     })
 });
 
