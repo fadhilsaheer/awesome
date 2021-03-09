@@ -4,11 +4,16 @@ import io from 'socket.io-client';
 
 import './chat.css';
 
+import InfoBar from '../InfoBar/InfoBar';
+
 let socket;
 
 const Chat = ({ location }) => {
     const [name, setName] = useState('');
     const [room, setRoom] = useState('');
+    const [messages, setMessages] = useState([]);
+    const [message, setMessage] = useState('');
+
     const ENDPOINT = 'localhost:5000';
 
     useEffect(() => {
@@ -32,15 +37,39 @@ const Chat = ({ location }) => {
 
         return () => {
             socket.emit("disconnect");
-            
+
             socket.off();
         }
 
     }, [ENDPOINT, location.search]);
 
+    useEffect(() => {
+        socket.on("message", message => {
+            setMessages([...messages, message]);
+        })
+
+
+
+    }, [messages])
+
+    // function for sending message
+
+    const sendMessage = (event) => {
+        event.preventDefault();
+
+        if(message){
+            socket.emit('sendMessage', message, () => setMessage(''));
+
+        }
+    }
+
     return(
-        <div>
-            <h1>Chat</h1>
+        <div className="outerContainer">
+            <div className="container">
+                <InfoBar room={room} />
+                {/* <input value={message} onChange={(event) => setMessage(event.target.value)} onKeyPress={event => event.key == 'Enter' ? sendMessage(event) : null} /> */}
+                
+            </div>
         </div>
     );
 }
