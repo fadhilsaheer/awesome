@@ -1,6 +1,8 @@
 import 'package:flashchat/constants.dart';
+import 'package:flashchat/screens/chat_screen.dart';
 import 'package:flashchat/widgets/rounded_button.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const id = 'registration_screen';
@@ -10,6 +12,8 @@ class RegistrationScreen extends StatefulWidget {
 }
 
 class _RegistrationScreenState extends State<RegistrationScreen> {
+  final _auth = FirebaseAuth.instance;
+
   String email;
   String password;
 
@@ -62,9 +66,17 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
             RoundButton(
               color: Colors.blueAccent,
               text: 'Register',
-              function: () {
-                print(email);
-                print(password);
+              function: () async {
+                try {
+                  final newUser = await _auth.signInWithEmailAndPassword(
+                      email: email, password: password);
+
+                  if (newUser != null) {
+                    Navigator.pushNamed(context, ChatScreen.id);
+                  }
+                } catch (e) {
+                  print(e);
+                }
               },
             )
           ],
