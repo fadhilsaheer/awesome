@@ -117,10 +117,12 @@ class MessageStream extends StatelessWidget {
         for (var message in messages) {
           final messageText = message.data()['text'];
           final messageSender = message.data()['sender'];
+          final isMe = messageSender == loggedinUser.email ? true : false;
 
           final messageBubble = MessageBubble(
             text: messageText,
             sender: messageSender,
+            isMe: isMe,
           );
 
           messageWidgets.add(messageBubble);
@@ -138,19 +140,19 @@ class MessageStream extends StatelessWidget {
 }
 
 class MessageBubble extends StatelessWidget {
-  MessageBubble({this.text, this.sender});
+  MessageBubble({this.text, this.sender, this.isMe});
 
   final text;
   final sender;
+  final bool isMe;
 
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: EdgeInsets.all(10.0),
       child: Column(
-        crossAxisAlignment: loggedinUser.email == sender
-            ? CrossAxisAlignment.end
-            : CrossAxisAlignment.start,
+        crossAxisAlignment:
+            isMe ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
           Text(
             sender,
@@ -158,19 +160,25 @@ class MessageBubble extends StatelessWidget {
           ),
           Material(
             elevation: 10.0,
-            borderRadius: BorderRadius.circular(30),
-            color: loggedinUser.email == sender
-                ? Colors.lightBlueAccent
-                : Colors.white,
+            borderRadius: isMe
+                ? BorderRadius.only(
+                    topLeft: Radius.circular(30.0),
+                    bottomLeft: Radius.circular(30.0),
+                    bottomRight: Radius.circular(30.0),
+                  )
+                : BorderRadius.only(
+                    bottomLeft: Radius.circular(30.0),
+                    bottomRight: Radius.circular(30.0),
+                    topRight: Radius.circular(30.0),
+                  ),
+            color: isMe ? Colors.lightBlueAccent : Colors.white,
             child: Padding(
               padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
               child: Text(
                 text,
                 style: TextStyle(
                   fontSize: 15.0,
-                  color: loggedinUser.email == sender
-                      ? Colors.white
-                      : Colors.black,
+                  color: isMe ? Colors.white : Colors.black54,
                 ),
               ),
             ),
