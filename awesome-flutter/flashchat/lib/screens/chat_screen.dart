@@ -10,20 +10,19 @@ class ChatScreen extends StatefulWidget {
   _ChatScreenState createState() => _ChatScreenState();
 }
 
-class _ChatScreenState extends State<ChatScreen> {
-  final _firestore = FirebaseFirestore.instance;
-  final _auth = FirebaseAuth.instance;
+final _firestore = FirebaseFirestore.instance;
+final _auth = FirebaseAuth.instance;
 
-  var loggedinUser;
+var loggedinUser;
+
+class _ChatScreenState extends State<ChatScreen> {
   String messageText;
+  final messageTextController = TextEditingController();
 
   @override
   void initState() {
     super.initState();
     getCurrentUser();
-    if (loggedinUser.email == null) {
-      Navigator.pop(context);
-    }
   }
 
   void getCurrentUser() async {
@@ -37,22 +36,6 @@ class _ChatScreenState extends State<ChatScreen> {
     }
   }
 
-  // void getMessages() async {
-  //   final messages = await _firestore.collection('messages').get();
-  //   for (var message in messages.docs) {
-  //     var cuMessage = message.data();
-  //     print(cuMessage);
-  //   }
-  // }
-
-  void messagesStream() async {
-    await for (var snapshot in _firestore.collection('messages').snapshots()) {
-      for (var cuMessage in snapshot.docs) {
-        print(cuMessage.data());
-      }
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -62,9 +45,8 @@ class _ChatScreenState extends State<ChatScreen> {
           IconButton(
               icon: Icon(Icons.close),
               onPressed: () {
-                // _auth.signOut();
-                // Navigator.pop(context);
-                messagesStream();
+                _auth.signOut();
+                Navigator.pop(context);
               }),
         ],
         title: Text('⚡️Chat'),
@@ -75,28 +57,7 @@ class _ChatScreenState extends State<ChatScreen> {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            StreamBuilder<QuerySnapshot>(
-              stream: _firestore.collection('messages').snapshots(),
-              builder: (context, snapshot) {
-                if (snapshot.hasData) {
-                  final messages = snapshot.data.docs;
-                  List<Text> messageWidgets = [];
-                  for (var message in messages) {
-                    final messageText = message.data()['text'];
-                    final messageSender = message.data()['sender'];
-
-                    final messageWidget =
-                        Text('$messageText from $messageSender');
-
-                    messageWidgets.add(messageWidget);
-                  }
-
-                  return Column(
-                    children: messageWidgets,
-                  );
-                }
-              },
-            ),
+            MessageStream(),
             Container(
               decoration: kMessageContainerDecoration,
               child: Row(
@@ -104,6 +65,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 children: <Widget>[
                   Expanded(
                     child: TextField(
+                      controller: messageTextController,
                       onChanged: (value) {
                         messageText = value;
                       },
@@ -113,6 +75,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   FlatButton(
                     onPressed: () {
                       try {
+                        messageTextController.clear();
                         _firestore.collection('messages').add({
                           'text': messageText,
                           'sender': loggedinUser.email,
@@ -131,6 +94,88 @@ class _ChatScreenState extends State<ChatScreen> {
             ),
           ],
         ),
+      ),
+    );
+  }
+}
+
+class MessageStream extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: _firestore.collection('messages').snapshots(),
+      builder: (context, snapshot) {
+        if (!snapshot.hasData) {
+          return Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.lightBlueAccent,
+            ),
+          );
+        }
+        final messages = snapshot.data.docs;
+        List<MessageBubble> messageWidgets = [];
+        for (var message in messages) {
+          final messageText = message.data()['text'];
+          final messageSender = message.data()['sender'];
+
+          final messageBubble = MessageBubble(
+            text: messageText,
+            sender: messageSender,
+          );
+
+          messageWidgets.add(messageBubble);
+        }
+
+        return Expanded(
+          child: ListView(
+            padding: EdgeInsets.symmetric(horizontal: 10, vertical: 20),
+            children: messageWidgets,
+          ),
+        );
+      },
+    );
+  }
+}
+
+class MessageBubble extends StatelessWidget {
+  MessageBubble({this.text, this.sender});
+
+  final text;
+  final sender;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.all(10.0),
+      child: Column(
+        crossAxisAlignment: loggedinUser.email == sender
+            ? CrossAxisAlignment.end
+            : CrossAxisAlignment.start,
+        children: [
+          Text(
+            sender,
+            style: TextStyle(fontSize: 12.0, color: Colors.black54),
+          ),
+          Material(
+            elevation: 10.0,
+            borderRadius: BorderRadius.circular(30),
+            color: loggedinUser.email == sender
+                ? Colors.lightBlueAccent
+                : Colors.white,
+            child: Padding(
+              padding: EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+              child: Text(
+                text,
+                style: TextStyle(
+                  fontSize: 15.0,
+                  color: loggedinUser.email == sender
+                      ? Colors.white
+                      : Colors.black,
+                ),
+              ),
+            ),
+          ),
+        ],
       ),
     );
   }
