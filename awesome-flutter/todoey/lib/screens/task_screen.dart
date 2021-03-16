@@ -25,6 +25,12 @@ class _TaskScreenState extends State<TaskScreen> {
     Navigator.pop(context);
   }
 
+  void deleteTask(index) {
+    setState(() {
+      tasks.removeAt(index);
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -50,6 +56,7 @@ class _TaskScreenState extends State<TaskScreen> {
                     tasks[index].toggleDone();
                   });
                 },
+                deleteTask: deleteTask,
               ),
             ),
           ),

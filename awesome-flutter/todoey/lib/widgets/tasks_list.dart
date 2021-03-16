@@ -4,8 +4,9 @@ import 'package:todoey/widgets/task_tile.dart';
 class TaskList extends StatelessWidget {
   final List tasks;
   final Function callback;
+  final Function deleteTask;
 
-  TaskList({this.tasks, this.callback});
+  TaskList({this.tasks, this.callback, this.deleteTask});
 
   @override
   Widget build(BuildContext context) {
@@ -16,6 +17,9 @@ class TaskList extends StatelessWidget {
           isChecked: tasks[index].isDone,
           checkboxCallback: (value) {
             callback(index);
+          },
+          deleteTask: () {
+            deleteTask(index);
           },
         );
       },
