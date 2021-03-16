@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/screens/add_task_screen.dart';
+import 'package:todoey/widgets/screen_part.dart';
 import 'package:todoey/widgets/tasks_list.dart';
 import 'package:todoey/modals/task.dart';
 
@@ -15,6 +16,11 @@ class _TaskScreenState extends State<TaskScreen> {
     Task(name: 'deploy'),
   ];
 
+  void addTask(String task) {
+    Task newTask = Task(name: task);
+    tasks.add(newTask);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -22,44 +28,7 @@ class _TaskScreenState extends State<TaskScreen> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Container(
-            padding: EdgeInsets.only(
-              top: 60.0,
-              left: 30.0,
-              right: 30.0,
-              bottom: 30.0,
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                CircleAvatar(
-                  child: Icon(
-                    Icons.list,
-                    size: 30.0,
-                    color: Colors.lightBlueAccent,
-                  ),
-                  backgroundColor: Colors.white,
-                  radius: 30.0,
-                ),
-                SizedBox(height: 10.0),
-                Text(
-                  'Todoey',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 50.0,
-                    fontWeight: FontWeight.w700,
-                  ),
-                ),
-                Text(
-                  '${tasks.length} Tasks',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontSize: 18.0,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          AppView(taskLength: tasks.length),
           Expanded(
             child: Container(
               decoration: BoxDecoration(
@@ -70,7 +39,14 @@ class _TaskScreenState extends State<TaskScreen> {
                 ),
               ),
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: TaskList(),
+              child: TaskList(
+                tasks: tasks,
+                callback: (index) {
+                  setState(() {
+                    tasks[index].toggleDone();
+                  });
+                },
+              ),
             ),
           ),
         ],
