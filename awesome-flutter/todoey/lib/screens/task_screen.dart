@@ -17,8 +17,12 @@ class _TaskScreenState extends State<TaskScreen> {
   ];
 
   void addTask(String task) {
-    Task newTask = Task(name: task);
-    tasks.add(newTask);
+    setState(() {
+      if (task.length != 0) {
+        tasks.add(Task(name: task));
+      }
+    });
+    Navigator.pop(context);
   }
 
   @override
@@ -55,7 +59,7 @@ class _TaskScreenState extends State<TaskScreen> {
         onPressed: () {
           showModalBottomSheet(
             context: context,
-            builder: (context) => AddTaskScreen(),
+            builder: (context) => AddTaskScreen(callback: addTask),
           );
         },
         backgroundColor: Colors.lightBlueAccent,
