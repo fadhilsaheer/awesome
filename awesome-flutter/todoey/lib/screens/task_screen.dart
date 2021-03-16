@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/widgets/tasks_list.dart';
 
 class TaskScreen extends StatelessWidget {
   @override
@@ -56,16 +57,7 @@ class TaskScreen extends StatelessWidget {
                 ),
               ),
               padding: EdgeInsets.symmetric(horizontal: 20.0),
-              child: ListView(
-                children: [
-                  ListTile(
-                    title: Text("Learn flutter"),
-                    trailing: Checkbox(
-                      value: false,
-                    ),
-                  )
-                ],
-              ),
+              child: TaskList(),
             ),
           ),
         ],
