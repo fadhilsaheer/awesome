@@ -3,11 +3,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-  // var firebase = Firebase.initializeApp();
-  AuthService() {
-    Firebase.initializeApp();
-  }
-  final _auth = FirebaseAuth.instance;
+  var firebase = Firebase.initializeApp();
+  var _auth = FirebaseAuth.instance;
 
   // create user object based on firebase user
 
