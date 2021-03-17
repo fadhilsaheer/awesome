@@ -1,4 +1,5 @@
 import 'package:brew_crew/services/auth.dart';
+import 'package:brew_crew/shared/consts.dart';
 import 'package:flutter/material.dart';
 
 class SignIn extends StatefulWidget {
@@ -52,6 +53,7 @@ class _SignInState extends State<SignIn> {
                 validator: (value) =>
                     value.isEmpty ? 'Enter a valid email' : null,
                 keyboardType: TextInputType.emailAddress,
+                decoration: textFieldDecoration.copyWith(hintText: 'Email'),
               ),
               SizedBox(height: 20.0),
               TextFormField(
@@ -60,6 +62,7 @@ class _SignInState extends State<SignIn> {
                     password = value;
                   });
                 },
+                decoration: textFieldDecoration.copyWith(hintText: 'Password'),
                 validator: (value) =>
                     value.length < 8 ? 'Enter a strong password' : null,
                 obscureText: true,

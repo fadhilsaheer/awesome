@@ -1,3 +1,4 @@
+import 'package:brew_crew/shared/consts.dart';
 import 'package:flutter/material.dart';
 import 'package:brew_crew/services/auth.dart';
 
@@ -51,6 +52,7 @@ class _RegisterState extends State<Register> {
                 },
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) => value.isEmpty ? 'Enter an email' : null,
+                decoration: textFieldDecoration.copyWith(hintText: 'Email'),
               ),
               SizedBox(height: 20.0),
               TextFormField(
@@ -59,6 +61,7 @@ class _RegisterState extends State<Register> {
                     password = value;
                   });
                 },
+                decoration: textFieldDecoration.copyWith(hintText: 'Password'),
                 validator: (value) =>
                     value.length < 8 ? 'Enter a strong password' : null,
                 obscureText: true,
