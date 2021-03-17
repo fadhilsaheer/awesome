@@ -30,6 +30,7 @@ class _SettingsFormState extends State<SettingsForm> {
           builder: (context, snapshot) {
             if (snapshot.hasData) {
               UserData userData = snapshot.data;
+
               return Form(
                 key: _formKey,
                 child: Column(
@@ -82,7 +83,16 @@ class _SettingsFormState extends State<SettingsForm> {
                         'Update',
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: () async {},
+                      onPressed: () async {
+                        if (_formKey.currentState.validate()) {
+                          await DatabaseService(uid: user.uid).updateUserData(
+                            _currentSugars ?? userData.sugars,
+                            _currentName ?? userData.name,
+                            _currentStrength ?? userData.strength,
+                          );
+                          Navigator.pop(context);
+                        }
+                      },
                     )
                   ],
                 ),
