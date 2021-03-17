@@ -1,4 +1,5 @@
 import 'package:brew_crew/models/brew.dart';
+import 'package:brew_crew/screens/home/brew_tile.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:provider/provider.dart';
@@ -17,6 +18,11 @@ class _BrewListState extends State<BrewList> {
       print(brew.sugars);
     });
 
-    return Container();
+    return ListView.builder(
+      itemCount: brews.length,
+      itemBuilder: (context, index) {
+        return BrewTile(brew: brews[index]);
+      },
+    );
   }
 }
