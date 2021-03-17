@@ -2,8 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
-  final firebase = Firebase.initializeApp();
-  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var firebase = Firebase.initializeApp();
+  final _auth = FirebaseAuth.instance;
 
   // sign in anonymous
 
