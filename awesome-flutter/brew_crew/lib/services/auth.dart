@@ -1,9 +1,16 @@
+import 'package:brew_crew/models/user.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class AuthService {
   var firebase = Firebase.initializeApp();
   final _auth = FirebaseAuth.instance;
+
+  // create user object based on firebase user
+
+  BrewUser _userFromFirebaseUser(user) {
+    return user != null ? BrewUser(uid: user.uid) : null;
+  }
 
   // sign in anonymous
 
