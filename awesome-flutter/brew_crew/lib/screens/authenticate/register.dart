@@ -16,6 +16,7 @@ class _RegisterState extends State<Register> {
   // for state
   String email = '';
   String password = '';
+  String error = '';
 
   @override
   Widget build(BuildContext context) {
@@ -69,12 +70,17 @@ class _RegisterState extends State<Register> {
                   "Register",
                   style: TextStyle(color: Colors.white),
                 ),
-                onPressed: () {
+                onPressed: () async {
                   if (_formKey.currentState.validate()) {
-                    print('$email : $password');
+                    dynamic result = await _auth.register(email, password);
+                    if (result == null) {
+                      setState(() => error = 'please supply a valid email');
+                    }
                   }
                 },
-              )
+              ),
+              SizedBox(height: 12),
+              Text(error, style: TextStyle(color: Colors.red, fontSize: 14.0)),
             ],
           ),
         ),
