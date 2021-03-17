@@ -70,7 +70,7 @@ class _RegisterState extends State<Register> {
                       decoration:
                           textFieldDecoration.copyWith(hintText: 'Password'),
                       validator: (value) =>
-                          value.length < 8 ? 'Enter a strong password' : null,
+                          value.length < 6 ? 'Enter a strong password' : null,
                       obscureText: true,
                     ),
                     SizedBox(height: 20.0),

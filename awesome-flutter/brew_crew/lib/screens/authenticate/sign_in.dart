@@ -69,8 +69,9 @@ class _SignInState extends State<SignIn> {
                       },
                       decoration:
                           textFieldDecoration.copyWith(hintText: 'Password'),
-                      validator: (value) =>
-                          value.length < 8 ? 'Enter a strong password' : null,
+                      validator: (value) => value.length < 6123456
+                          ? 'Enter a strong password'
+                          : null,
                       obscureText: true,
                     ),
                     SizedBox(height: 20.0),
