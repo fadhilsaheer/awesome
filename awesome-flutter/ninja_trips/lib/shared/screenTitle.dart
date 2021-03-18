@@ -23,7 +23,10 @@ class ScreenTitle extends StatelessWidget {
       builder: (BuildContext context, double _val, Widget child) {
         return Opacity(
           opacity: _val,
-          child: child,
+          child: Padding(
+            padding: EdgeInsets.only(top: _val * 20),
+            child: child,
+          ),
         );
       },
     );
