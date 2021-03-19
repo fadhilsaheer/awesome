@@ -33,7 +33,7 @@ class _TripListState extends State<TripList> {
 
     _trips.forEach((Trip trip) {
       ft = ft.then((_) {
-        return Future.delayed(const Duration(milliseconds: 200), () {
+        return Future.delayed(const Duration(milliseconds: 100), () {
           _tripTiles.add(_buildTile(trip));
           _listKey.currentState.insertItem(_tripTiles.length - 1);
         });
