@@ -9,7 +9,6 @@ const main =  async () => {
     const post = orm.em.create(Post, {title: 'hello world'});
     await orm.em.persistAndFlush(post);
 
-
 };
 
 main().catch(err => {
