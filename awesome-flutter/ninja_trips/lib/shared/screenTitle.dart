@@ -9,6 +9,7 @@ class ScreenTitle extends StatelessWidget {
   Widget build(BuildContext context) {
     return TweenAnimationBuilder(
       duration: Duration(milliseconds: 500),
+      curve: Curves.easeIn,
       child: Text(
         text,
         style: TextStyle(
@@ -22,7 +23,7 @@ class ScreenTitle extends StatelessWidget {
         return Opacity(
           opacity: _val,
           child: Padding(
-            padding: EdgeInsets.only(top: _val * 20),
+            padding: EdgeInsets.only(top: _val * 30),
             child: child,
           ),
         );
