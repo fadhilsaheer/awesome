@@ -24,5 +24,7 @@ const main = () => __awaiter(void 0, void 0, void 0, function* () {
     const post = orm.em.create(Post_1.Post, { title: 'hello world' });
     yield orm.em.persistAndFlush(post);
 });
-main();
+main().catch(err => {
+    console.log(err);
+});
 //# sourceMappingURL=index.js.map
