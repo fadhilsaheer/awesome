@@ -9,9 +9,9 @@ export default {
         pattern: /^[\w-]+\d+\.ts$/,
     },
     entities: [Post],
+    user: "postgres",
+    password: "root",
     dbName: 'lirredit',
     type: 'postgresql',
-    user: 'postgres',
-    password: 'root',
     debug: !__prod__,
 } as Parameters<typeof MikroORM.init>[0];

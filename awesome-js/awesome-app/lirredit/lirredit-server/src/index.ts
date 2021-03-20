@@ -4,11 +4,15 @@ import { Post } from './entitiesn/Post';
 import microConfig from './mikro-orm.config';
 
 const main =  async () => {
+
     const orm = await MikroORM.init(microConfig);
     await orm.getMigrator().up(); // run migrator before creating post
     const post = orm.em.create(Post, {title: 'hello world'});
     await orm.em.persistAndFlush(post);
 
+    // const posts = await orm.em.find(Post, {});
+    // console.log(posts);
+    
 };
 
 main().catch(err => {

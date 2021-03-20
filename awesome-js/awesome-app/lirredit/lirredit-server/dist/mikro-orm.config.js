@@ -12,10 +12,10 @@ exports.default = {
         pattern: /^[\w-]+\d+\.ts$/,
     },
     entities: [Post_1.Post],
+    user: "postgres",
+    password: "root",
     dbName: 'lirredit',
     type: 'postgresql',
-    user: 'postgres',
-    password: 'root',
     debug: !constants_1.__prod__,
 };
 //# sourceMappingURL=mikro-orm.config.js.map
