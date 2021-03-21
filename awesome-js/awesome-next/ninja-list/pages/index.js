@@ -7,7 +7,6 @@ import Link from "next/link";
 export default function Home() {
   return (
     <div>
-      <Navbar />
       <h1>Homepage</h1>
       <p>
         Velit nulla est et aute velit anim est nisi ullamco commodo deserunt
@@ -22,7 +21,6 @@ export default function Home() {
         sit veniam.
       </p>
       <Link href="/ninjas"><a>See Ninja Listing</a></Link>
-      <Footer />
     </div>
   );
 }
