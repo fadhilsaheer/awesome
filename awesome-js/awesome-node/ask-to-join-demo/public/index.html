@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>join</title>
+  </head>
+  <body>
+
+    <input type="text" placeholder="enter your name" id="name" />
+    <input type="text" placeholder="enter room" id="room" />
+    <button class="btn">join</button>
+
+    <script>
+
+        let name = document.getElementById("name");
+        let room = document.getElementById("room");
+
+        let btn = document.querySelector(".btn")
+
+
+        btn.addEventListener("click", ()=>{
+            window.location.href = `/chat.html?name=${name.value}&room=${room.value}`
+        })
+
+    </script>
+  </body>
+</html>
