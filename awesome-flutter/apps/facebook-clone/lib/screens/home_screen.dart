@@ -36,7 +36,7 @@ class HomeScreen extends StatelessWidget {
                 onPressed: () => print("messenger"),
               )
             ],
-          )
+          ),
         ],
       ),
     );
