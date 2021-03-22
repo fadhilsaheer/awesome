@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:cached_network_image/cached_network_image.dart';
 
 class ProfileAvatar extends StatelessWidget {
   final String imageUrl;
@@ -6,11 +7,17 @@ class ProfileAvatar extends StatelessWidget {
 
   ProfileAvatar({
     @required this.imageUrl,
-    this.isActive,
+    this.isActive = false,
   });
 
   @override
   Widget build(BuildContext context) {
-    return Container();
+    return CircleAvatar(
+      radius: 20.0,
+      backgroundColor: Colors.grey[200],
+      backgroundImage: CachedNetworkImageProvider(
+        imageUrl,
+      ),
+    );
   }
 }
