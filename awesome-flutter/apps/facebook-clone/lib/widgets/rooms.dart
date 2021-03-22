@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_responsive_ui/config/palette.dart';
 import 'package:flutter_facebook_responsive_ui/models/models.dart';
+import 'package:flutter_facebook_responsive_ui/widgets/widgets.dart';
 
 class Room extends StatelessWidget {
   final List<User> onlineUsers;
@@ -23,11 +24,10 @@ class Room extends StatelessWidget {
               child: _createRoomButton(),
             );
           }
-          return Container(
-            margin: const EdgeInsets.all(2.0),
-            height: 20.0,
-            width: 20.0,
-            color: Colors.red,
+          final User user = onlineUsers[index - 1];
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: 8.0),
+            child: ProfileAvatar(imageUrl: user.imageUrl, isActive: true),
           );
         },
       ),
