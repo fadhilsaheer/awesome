@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_facebook_responsive_ui/widgets/widgets.dart';
 
 import '../config/palette.dart';
 
@@ -23,18 +24,15 @@ class HomeScreen extends StatelessWidget {
             centerTitle: false,
             floating: true,
             actions: [
-              Container(
-                margin: const EdgeInsets.all(6.0),
-                decoration: BoxDecoration(
-                  color: Colors.grey[200],
-                  shape: BoxShape.circle,
-                ),
-                child: IconButton(
-                  icon: Icon(Icons.search),
-                  iconSize: 30.0,
-                  color: Colors.black,
-                  onPressed: () {},
-                ),
+              CircleButton(
+                icon: Icons.search,
+                iconSize: 30.0,
+                onPressed: () {},
+              ),
+              CircleButton(
+                icon: Icons.search,
+                iconSize: 30.0,
+                onPressed: () {},
               )
             ],
           )

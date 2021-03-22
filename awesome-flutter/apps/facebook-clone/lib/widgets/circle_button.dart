@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 
 class CircleButton extends StatelessWidget {
-  final IconData;
+  final IconData icon;
   final double iconSize;
   final Function onPressed;
 
   CircleButton({
-    @required this.IconData,
+    @required this.icon,
     @required this.iconSize,
     @required this.onPressed,
   });
@@ -20,10 +20,10 @@ class CircleButton extends StatelessWidget {
         shape: BoxShape.circle,
       ),
       child: IconButton(
-        icon: Icon(Icons.search),
-        iconSize: 30.0,
+        icon: Icon(icon),
+        iconSize: iconSize,
         color: Colors.black,
-        onPressed: () {},
+        onPressed: onPressed,
       ),
     );
   }
