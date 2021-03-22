@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_responsive_ui/widgets/widgets.dart';
+import 'package:material_design_icons_flutter/material_design_icons_flutter.dart';
 
 import '../config/palette.dart';
 
@@ -27,12 +28,12 @@ class HomeScreen extends StatelessWidget {
               CircleButton(
                 icon: Icons.search,
                 iconSize: 30.0,
-                onPressed: () {},
+                onPressed: () => print("search"),
               ),
               CircleButton(
-                icon: Icons.search,
+                icon: MdiIcons.facebookMessenger,
                 iconSize: 30.0,
-                onPressed: () {},
+                onPressed: () => print("messenger"),
               )
             ],
           )
