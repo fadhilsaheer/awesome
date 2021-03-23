@@ -42,3 +42,58 @@ with these you can understand you are not limited the javascript in web you can 
 
 
 
+##  How Can I Learn Javascrpt ?? 📚
+
+
+
+You have many courses and resources both free and paid out there 🌍  
+
+> I will recommend you some of the best I think 😉
+
+
+
+### Documents Tutorial 📝
+
+You can find lot of them that you can read 📖
+
+
+
+- https://www.w3schools.com/js/DEFAULT.asp
+- https://www.freecodecamp.org/
+- https://www.theodinproject.com/paths/full-stack-javascript?
+- https://www.tutorialspoint.com/javascript/index.htm
+- https://www.javatpoint.com/javascript-tutorial
+- https://www.javascripttutorial.net/
+
+
+
+### Video Tutorials [ Free ]
+
+You can find lots of them online [ Youtube is the best 😉 ]
+
+
+
+- https://www.youtube.com/watch?v=PkZNo7MFNFg
+- https://www.youtube.com/watch?v=Qqx_wzMmFeA
+- https://www.youtube.com/watch?v=2Ji-clqUYnA
+- https://amigoscode.com/p/javascript
+- https://www.youtube.com/watch?v=iWOYAxlnaww&list=PL4cUxeGkcC9haFPT7J25Q9GRB_ZkFrQAc
+- https://www.youtube.com/c/TheNetNinja/playlists [ You can find a lot of Js content here ]
+
+
+
+### Video Tutorials [ Paid ]
+
+> Find more on udemy, skillshare, codecademy .. 
+
+
+
+- https://www.udemy.com/courses/search/?src=ukw&q=javascript
+- https://shrtco.de/gHlapY
+- https://www.codecademy.com/learn/introduction-to-javascript [ Free certificate for pro ]
+
+
+
+
+
+Hope you will be expert 😇
