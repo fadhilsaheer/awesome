@@ -12,9 +12,13 @@ No problem "we will help you" out 😉 yes I said "we" Javascript has a huge com
 
 so lets start my a question 😁 <b>what is javascript ?? 🤷‍♂️</b>
 
+
+
 > well, JavaScript is high-level, often just-in-time compiled, and multi-paradigm. It has curly-bracket syntax, dynamic typing, prototype-based object-orientation, and first-class functions
 >
 > [ don't mind I copied it from google 😅 ]
+
+
 
 
 
