@@ -61,7 +61,10 @@ class Client:
         pass
 
     def stop(self):
-        pass
+        self.running = False
+        self.win.destroy()
+        self.sock.close()
+        exit(0)
 
     def receive(self):
         pass
