@@ -12,9 +12,11 @@ server.listen()
 clients = []
 nicknames = []
 
+
 def broadcast(message):
     for client in clients:
         client.send(message)
+
 
 def handle(client):
     while True:
@@ -29,6 +31,7 @@ def handle(client):
             nickname = nicknames[index]
             nicknames.remove(nickname)
             break
+
 
 def receive():
     while True:
@@ -48,6 +51,7 @@ def receive():
 
         thread = threading.Thread(target=handle, args=(client,))
         thread.start()
+
 
 print("server running")
 receive()

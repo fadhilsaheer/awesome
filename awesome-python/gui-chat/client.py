@@ -7,6 +7,7 @@ from tkinter import simpledialog
 HOST = '127.0.0.1'
 PORT = 8080
 
+
 class Client:
 
     def __init__(self, host, port):
@@ -72,7 +73,7 @@ class Client:
     def receive(self):
         while self.running:
             try:
-                message = self.sock.recv(1024)
+                message = self.sock.recv(1024).decode('utf-8')
 
                 if message == 'NICK':
                     self.sock.send(self.nickname.encode("utf-8"))
@@ -89,7 +90,6 @@ class Client:
                 print("Error")
                 self.sock.close()
                 break
-
 
 
 client = Client(HOST, PORT)
