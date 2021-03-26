@@ -41,3 +41,35 @@ Track phone numbers 😅 this is just a sample project for learning a module nam
 
 
 
+importing stuff
+
+```python
+import phonenumbers
+from phonenumbers import geocoder
+from phonenumbers import carrier
+
+import pyfiglet # to display heading nicely
+```
+
+
+
+in main function we have a prompt for number
+
+```python
+number = input("Enter a valid number :} ") # you need to enter a number
+```
+
+
+
+in find details function we have finding the number location and provider
+
+```python
+phone_number = phonenumbers.parse(valid-phone-number) # for other functions
+
+# this will return number location in 'english'
+location = geocoder.description_for_number(phone_number, 'en')
+
+# this will return number provider in 'english'
+service_provider = carrier.name_for_number(phone_number, 'en')
+```
+
