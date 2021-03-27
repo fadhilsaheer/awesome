@@ -6,6 +6,7 @@ class CustomSliverAppBar extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverAppBar(
       leadingWidth: 100.0,
+      floating: true,
       leading: Padding(
         padding: const EdgeInsets.only(left: 12.0),
         child: Image.asset('assets/yt_logo_dark.png'),
