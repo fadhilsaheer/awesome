@@ -1,5 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_youtube_ui/data.dart';
 import 'package:flutter_youtube_ui/screens/home.dart';
+
+final selectVideoProvider = StateProvider<Video?>((ref) => null);
 
 class NavScreen extends StatefulWidget {
   @override
