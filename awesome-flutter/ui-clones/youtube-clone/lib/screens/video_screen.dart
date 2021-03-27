@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:flutter_youtube_ui/data.dart';
 import 'package:flutter_youtube_ui/screens/nav_screen.dart';
 import 'package:flutter_youtube_ui/widgets/widgets.dart';
 import 'package:miniplayer/miniplayer.dart';
@@ -51,6 +52,12 @@ class VideoScreen extends StatelessWidget {
                   ),
                 );
               }),
+            ),
+            SliverList(
+              delegate: SliverChildBuilderDelegate((context, index) {
+                final video = suggestedVideos[index];
+                return VideoCard(video: video, hasPadding: true);
+              }, childCount: suggestedVideos.length),
             )
           ],
         ),

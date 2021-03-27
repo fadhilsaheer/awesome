@@ -7,10 +7,12 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 
 class VideoCard extends StatelessWidget {
   final Video video;
+  final bool hasPadding;
 
   const VideoCard({
     Key? key,
     required this.video,
+    this.hasPadding = false,
   }) : super(key: key);
 
   @override
@@ -27,11 +29,16 @@ class VideoCard extends StatelessWidget {
         children: [
           Stack(
             children: [
-              Image.network(
-                video.thumbnailUrl,
-                height: 220.0,
-                width: double.infinity,
-                fit: BoxFit.cover,
+              Padding(
+                padding: EdgeInsets.symmetric(
+                  horizontal: hasPadding ? 12.0 : 0,
+                ),
+                child: Image.network(
+                  video.thumbnailUrl,
+                  height: 220.0,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
               ),
               Positioned(
                 bottom: 8.0,
