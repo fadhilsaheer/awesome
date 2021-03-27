@@ -42,7 +42,7 @@ class VideoCard extends StatelessWidget {
               ),
               Positioned(
                 bottom: 8.0,
-                right: 8.0,
+                right: hasPadding ? 20.0 : 8.0,
                 child: Container(
                   padding: const EdgeInsets.all(4.0),
                   color: Colors.black,
