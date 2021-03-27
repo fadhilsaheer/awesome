@@ -102,6 +102,18 @@ class _NavScreenState extends State<NavScreen> {
                                         ),
                                       ),
                                     ),
+                                    IconButton(
+                                      icon: const Icon(Icons.play_arrow),
+                                      onPressed: () {},
+                                    ),
+                                    IconButton(
+                                      icon: const Icon(Icons.close),
+                                      onPressed: () {
+                                        context
+                                            .read(selectVideoProvider)
+                                            .state = null;
+                                      },
+                                    ),
                                   ],
                                 ),
                                 const LinearProgressIndicator(
