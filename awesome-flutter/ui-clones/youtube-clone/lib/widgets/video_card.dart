@@ -8,11 +8,13 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 class VideoCard extends StatelessWidget {
   final Video video;
   final bool hasPadding;
+  final VoidCallback? onTap;
 
   const VideoCard({
     Key? key,
     required this.video,
     this.hasPadding = false,
+    this.onTap,
   }) : super(key: key);
 
   @override
@@ -24,6 +26,7 @@ class VideoCard extends StatelessWidget {
             .read(miniPlayerControllerProvider)
             .state
             .animateToHeight(state: PanelState.MAX);
+        if (onTap != null) onTap!();
       },
       child: Column(
         children: [
