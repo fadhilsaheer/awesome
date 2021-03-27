@@ -24,17 +24,22 @@ class _NavScreenState extends State<NavScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Stack(
-        children: _screens
-            .asMap()
-            .map((i, screen) => MapEntry(
-                i,
-                Offstage(
-                  child: screen,
-                  offstage: _selectedIndex != i,
-                )))
-            .values
-            .toList(),
+      body: Consumer(
+        builder: (context, watch, _) {
+          final selectedVideo = watch(selectVideoProvider).state;
+          return Stack(
+            children: _screens
+                .asMap()
+                .map((i, screen) => MapEntry(
+                    i,
+                    Offstage(
+                      child: screen,
+                      offstage: _selectedIndex != i,
+                    )))
+                .values
+                .toList(),
+          );
+        },
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedIndex,
