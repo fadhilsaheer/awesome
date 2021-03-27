@@ -6,6 +6,10 @@ import 'package:miniplayer/miniplayer.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 final selectVideoProvider = StateProvider<Video?>((ref) => null);
+final miniPlayerControllerProvider =
+    StateProvider.autoDispose<MiniplayerController>(
+  (ref) => MiniplayerController(),
+);
 
 class NavScreen extends StatefulWidget {
   @override
@@ -31,6 +35,9 @@ class _NavScreenState extends State<NavScreen> {
       body: Consumer(
         builder: (context, watch, _) {
           final selectedVideo = watch(selectVideoProvider).state;
+          final miniPlayerController =
+              watch(miniPlayerControllerProvider).state;
+
           return Stack(
             children: _screens
                 .asMap()
@@ -46,6 +53,7 @@ class _NavScreenState extends State<NavScreen> {
                     Offstage(
                       offstage: selectedVideo == null,
                       child: Miniplayer(
+                        controller: miniPlayerController,
                         maxHeight: MediaQuery.of(context).size.height,
                         minHeight: _playerMinHeight,
                         builder: (height, percentage) {
