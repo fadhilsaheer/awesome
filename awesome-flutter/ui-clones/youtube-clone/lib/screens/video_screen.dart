@@ -27,15 +27,22 @@ class VideoScreen extends StatelessWidget {
                             fit: BoxFit.cover,
                           ),
                           IconButton(
-                              icon: const Icon(Icons.keyboard_arrow_down),
-                              iconSize: 30.0,
-                              onPressed: () {
-                                context
-                                    .read(miniPlayerControllerProvider)
-                                    .state
-                                    .animateToHeight(state: PanelState.MIN);
-                              })
+                            icon: const Icon(Icons.keyboard_arrow_down),
+                            iconSize: 30.0,
+                            onPressed: () {
+                              context
+                                  .read(miniPlayerControllerProvider)
+                                  .state
+                                  .animateToHeight(state: PanelState.MIN);
+                            },
+                          )
                         ],
+                      ),
+                      const LinearProgressIndicator(
+                        value: 0.4,
+                        valueColor: AlwaysStoppedAnimation<Color>(
+                          Colors.red,
+                        ),
                       )
                     ],
                   ),

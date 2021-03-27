@@ -132,7 +132,8 @@ class _NavScreenState extends State<NavScreen> {
                                   const LinearProgressIndicator(
                                     value: 0.4,
                                     valueColor: AlwaysStoppedAnimation<Color>(
-                                        Colors.red),
+                                      Colors.red,
+                                    ),
                                   )
                                 ],
                               ),
