@@ -13,11 +13,30 @@ class VideoCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        Image.network(
-          video.thumbnailUrl,
-          height: 220.0,
-          width: double.infinity,
-          fit: BoxFit.cover,
+        Stack(
+          children: [
+            Image.network(
+              video.thumbnailUrl,
+              height: 220.0,
+              width: double.infinity,
+              fit: BoxFit.cover,
+            ),
+            Positioned(
+              bottom: 8.0,
+              right: 8.0,
+              child: Container(
+                padding: const EdgeInsets.all(4.0),
+                color: Colors.black,
+                child: Text(
+                  video.duration,
+                  style: Theme.of(context)
+                      .textTheme
+                      .caption!
+                      .copyWith(color: Colors.white),
+                ),
+              ),
+            )
+          ],
         )
       ],
     );
