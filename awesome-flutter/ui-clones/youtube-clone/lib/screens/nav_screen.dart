@@ -8,6 +8,14 @@ class NavScreen extends StatefulWidget {
 class _NavScreenState extends State<NavScreen> {
   int _selectedIndex = 0;
 
+  final _screens = [
+    const Scaffold(body: Center(child: Text("Explore"))),
+    const Scaffold(body: Center(child: Text("Home"))),
+    const Scaffold(body: Center(child: Text("Explore"))),
+    const Scaffold(body: Center(child: Text("Explore"))),
+    const Scaffold(body: Center(child: Text("Explore"))),
+  ];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +29,7 @@ class _NavScreenState extends State<NavScreen> {
         },
         selectedFontSize: 10.0,
         unselectedFontSize: 10.0,
-        items: [
+        items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.home_outlined),
             label: 'Home',
@@ -29,22 +37,22 @@ class _NavScreenState extends State<NavScreen> {
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.explore_outlined),
-            label: 'Home',
+            label: 'Explore',
             activeIcon: Icon(Icons.explore),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.add_circle_outline),
-            label: 'Home',
+            label: 'Add',
             activeIcon: Icon(Icons.add_circle),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.subscriptions_outlined),
-            label: 'Home',
+            label: 'Subscription',
             activeIcon: Icon(Icons.subscriptions),
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.video_library_outlined),
-            label: 'Home',
+            label: 'Library',
             activeIcon: Icon(Icons.video_library),
           ),
         ],
