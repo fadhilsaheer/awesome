@@ -1,35 +1,33 @@
-import 'package:app/models/task_model.dart';
-import 'package:app/screens/create_task.dart';
-import 'package:app/widgets/widgets.dart';
-import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
-import 'package:flutter/widgets.dart';
-import 'package:app/data/data.dart';
+import 'package:app/model/data.dart';
+import 'package:app/model/note_model.dart';
+import 'package:app/screens/create_screen.dart';
+import 'package:app/widgets/note_container.dart';
+import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
-  _HomeScreenState createState() => _HomeScreenState();
+  HomeScreenState createState() => HomeScreenState();
 }
 
-class _HomeScreenState extends State<HomeScreen> {
+class HomeScreenState extends State<HomeScreen> {
   List<Widget> _appList = [
     Text(
-      "My Tasks",
+      'My Notes',
       style: TextStyle(
         color: appWhite,
         fontSize: 30.0,
         fontWeight: FontWeight.w500,
       ),
     ),
-    SizedBox(height: 20.0),
+    SizedBox(height: 40.0),
   ];
 
   @override
   void initState() {
     super.initState();
-
-    for (Task _task in taskList) {
-      _appList.add(TaskContainer(task: _task));
+    for (Note note in note_data) {
+      _appList.add(NoteContainer(note: note));
     }
   }
 
@@ -38,20 +36,20 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: primaryColor,
       floatingActionButton: FloatingActionButton(
-        backgroundColor: appGreen,
-        child: Icon(Icons.add, color: appWhite, size: 30.0),
         onPressed: () {
           Navigator.push(
             context,
             MaterialPageRoute(
-              builder: (_) => CreateTask(),
+              builder: (_) => CreateNote(),
             ),
           );
         },
+        backgroundColor: appGreen,
+        child: Icon(Icons.add, size: 35.0),
       ),
       body: SafeArea(
         child: ListView.builder(
-          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
+          padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
           itemCount: _appList.length,
           itemBuilder: (BuildContext context, int index) {
             return _appList[index];

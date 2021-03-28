@@ -1,12 +1,12 @@
-import 'package:app/models/task_model.dart';
-import 'package:app/screens/task_screen.dart';
-import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
+import 'package:app/model/note_model.dart';
+import 'package:app/screens/note_detail.dart';
+import 'package:flutter/material.dart';
 
-class TaskContainer extends StatelessWidget {
-  final Task task;
+class NoteContainer extends StatelessWidget {
+  final Note note;
 
-  TaskContainer({this.task});
+  NoteContainer({this.note});
 
   @override
   Widget build(BuildContext context) {
@@ -15,52 +15,47 @@ class TaskContainer extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => TaskScreen(
-              task: task,
-            ),
+            builder: (_) => NoteDetail(note: note),
           ),
         );
       },
       child: Container(
-        padding: EdgeInsets.all(20.0),
         margin: EdgeInsets.only(top: 20.0),
-        width: double.infinity,
+        padding: EdgeInsets.all(20.0),
         decoration: BoxDecoration(
           color: secondayrColor,
-          borderRadius: BorderRadius.circular(10.0),
+          borderRadius: BorderRadius.circular(15.0),
         ),
+        width: double.infinity,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              task.title,
+              note.title,
               style: TextStyle(
                 color: appWhite,
                 fontSize: 20.0,
                 fontWeight: FontWeight.w500,
               ),
             ),
-            SizedBox(height: 15.0),
-            Opacity(
-              opacity: 0.5,
-              child: Text(
-                task.description,
-                style: TextStyle(
-                  color: Colors.white,
-                  fontSize: 15.0,
-                  fontWeight: FontWeight.w500,
-                ),
-              ),
-            ),
-            SizedBox(height: 15.0),
+            SizedBox(height: 10.0),
             Text(
-              '${task.tasks.length} Tasks',
+              note.description,
               style: TextStyle(
-                color: appGreen,
-                fontSize: 16.0,
+                color: Colors.grey,
+                fontSize: 15.0,
                 fontWeight: FontWeight.w500,
               ),
             ),
+            SizedBox(height: 20.0),
+            Text(
+              note.category,
+              style: TextStyle(
+                color: appGreen,
+                fontSize: 15.0,
+                fontWeight: FontWeight.w500,
+              ),
+            )
           ],
         ),
       ),
