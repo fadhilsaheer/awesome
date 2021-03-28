@@ -11,6 +11,27 @@ class HomeScreen extends StatelessWidget {
         child: Icon(Icons.add, color: appWhite, size: 30.0),
         onPressed: () {},
       ),
+      body: SafeArea(
+        child: ListView(
+          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 50.0),
+          children: [
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "My Tasks",
+                  style: TextStyle(
+                    color: appWhite,
+                    fontSize: 30.0,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                SizedBox(height: 20.0),
+              ],
+            )
+          ],
+        ),
+      ),
     );
   }
 }
