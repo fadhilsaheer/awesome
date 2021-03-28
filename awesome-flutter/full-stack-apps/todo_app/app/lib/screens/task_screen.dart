@@ -5,24 +5,47 @@ import 'package:app/constants.dart';
 class TaskScreen extends StatefulWidget {
   final Task task;
 
-  TaskScreen({this.task});
+  TaskScreen({@required this.task});
 
   @override
   _TaskScreenState createState() => _TaskScreenState();
 }
 
 class _TaskScreenState extends State<TaskScreen> {
-  List<Widget> _appList = [
-    Text(
-      'My Task',
-      style: TextStyle(
-        color: appWhite,
-        fontSize: 30.0,
-        fontWeight: FontWeight.w500,
+  Task _task;
+  List<Widget> _appList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _task = widget.task;
+    fillAppList();
+  }
+
+  void fillAppList() {
+    _appList.add(
+      Text(
+        _task.title,
+        style: TextStyle(
+          color: appWhite,
+          fontSize: 30.0,
+          fontWeight: FontWeight.w500,
+        ),
       ),
-    ),
-    SizedBox(height: 20.0),
-  ];
+    );
+    _appList.add(SizedBox(height: 20.0));
+    _appList.add(
+      Text(
+        _task.description,
+        style: TextStyle(
+          color: Colors.grey,
+          fontSize: 15.0,
+          fontWeight: FontWeight.w500,
+        ),
+      ),
+    );
+    _appList.add(SizedBox(height: 40.0));
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -1,4 +1,5 @@
 import 'package:app/models/task_model.dart';
+import 'package:app/screens/task_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
 
@@ -11,7 +12,14 @@ class TaskContainer extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        print("gesture detector");
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (_) => TaskScreen(
+              task: task,
+            ),
+          ),
+        );
       },
       child: Container(
         padding: EdgeInsets.all(20.0),
