@@ -1,4 +1,5 @@
 import 'package:app/models/task_model.dart';
+import 'package:app/screens/create_task.dart';
 import 'package:app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
@@ -39,7 +40,14 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: appGreen,
         child: Icon(Icons.add, color: appWhite, size: 30.0),
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => CreateTask(),
+            ),
+          );
+        },
       ),
       body: SafeArea(
         child: ListView.builder(
