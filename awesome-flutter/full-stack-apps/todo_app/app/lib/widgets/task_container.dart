@@ -1,7 +1,12 @@
+import 'package:app/models/task_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
 
 class TaskContainer extends StatelessWidget {
+  final Task task;
+
+  TaskContainer({this.task});
+
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
@@ -20,7 +25,7 @@ class TaskContainer extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
-              "Task Name",
+              task.title,
               style: TextStyle(
                 color: appWhite,
                 fontSize: 20.0,
@@ -31,7 +36,7 @@ class TaskContainer extends StatelessWidget {
             Opacity(
               opacity: 0.5,
               child: Text(
-                "Dolore et excepteur. Qui irure eiusmod duis commodo aliquip. Non et consequat reprehenderit esse.",
+                task.description,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 15.0,
@@ -41,7 +46,7 @@ class TaskContainer extends StatelessWidget {
             ),
             SizedBox(height: 15.0),
             Text(
-              "12 Tasks",
+              '${task.tasks.length} Tasks',
               style: TextStyle(
                 color: appGreen,
                 fontSize: 16.0,

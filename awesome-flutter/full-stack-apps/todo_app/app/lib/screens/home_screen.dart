@@ -28,7 +28,7 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
 
     for (Task _task in taskList) {
-      _appList.add(TaskContainer());
+      _appList.add(TaskContainer(task: _task));
     }
   }
 
