@@ -7,6 +7,9 @@ class CreateTask extends StatefulWidget {
 }
 
 class _CreateTaskState extends State<CreateTask> {
+  String title;
+  String description;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
