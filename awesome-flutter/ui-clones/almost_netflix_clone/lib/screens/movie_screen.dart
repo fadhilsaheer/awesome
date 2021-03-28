@@ -1,4 +1,5 @@
 import 'package:almost_netflix_clone/widgets/circular_clipper.dart';
+import 'package:almost_netflix_clone/widgets/content_scroll.dart';
 import 'package:flutter/material.dart';
 import 'package:almost_netflix_clone/models/movie_model.dart';
 
@@ -195,10 +196,16 @@ class _MovieScreenState extends State<MovieScreen> {
                       ),
                     ),
                   ),
-                )
+                ),
               ],
             ),
           ),
+          ContentScroll(
+            images: widget.movie.screenshots,
+            title: 'Screenshots',
+            imageHeight: 200.0,
+            imageWidth: 250.0,
+          )
         ],
       ),
     );
