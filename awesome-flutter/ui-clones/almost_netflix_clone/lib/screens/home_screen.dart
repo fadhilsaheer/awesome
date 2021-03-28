@@ -22,7 +22,7 @@ class _HomescreenState extends State<Homescreen> {
         double value = 1;
         if (_pageController.position.haveDimensions) {
           value = _pageController.page - index;
-          value = (1 - (value.abs() * 0.3) + 0.6).clamp(0.0, 1.0);
+          value = (1 - (value.abs() * 0.3) + 0.06).clamp(0.0, 1.0);
         }
 
         return Center(
@@ -57,6 +57,21 @@ class _HomescreenState extends State<Homescreen> {
                     height: 220.0,
                     fit: BoxFit.cover,
                   ),
+                ),
+              ),
+            ),
+          ),
+          Positioned(
+            left: 30.0,
+            bottom: 40.0,
+            child: Container(
+              width: 250.0,
+              child: Text(
+                movies[index].title,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
                 ),
               ),
             ),
@@ -107,7 +122,7 @@ class _HomescreenState extends State<Homescreen> {
                 return _movieSelector(index);
               },
             ),
-          )
+          ),
         ],
       ),
     );
