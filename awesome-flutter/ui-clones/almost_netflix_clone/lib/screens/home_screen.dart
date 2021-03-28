@@ -1,4 +1,5 @@
 import 'package:almost_netflix_clone/models/movie_model.dart';
+import 'package:almost_netflix_clone/screens/movie_screen.dart';
 import 'package:almost_netflix_clone/widgets/content_scroll.dart';
 import 'package:flutter/material.dart';
 
@@ -36,9 +37,14 @@ class _HomescreenState extends State<Homescreen> {
       },
       child: GestureDetector(
         onTap: () {
-          Navigator.push(context, MaterialPageRoute(builder: (_) {
-            // MovieScreen(movie: movies[index]);
-          }));
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              builder: (_) => MovieScreen(
+                movie: movies[index],
+              ),
+            ),
+          );
         },
         child: Stack(
           children: [
