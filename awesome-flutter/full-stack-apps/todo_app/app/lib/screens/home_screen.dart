@@ -1,5 +1,7 @@
+import 'package:app/widgets/widgets.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
+import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -13,7 +15,7 @@ class HomeScreen extends StatelessWidget {
       ),
       body: SafeArea(
         child: ListView(
-          padding: EdgeInsets.symmetric(horizontal: 30.0, vertical: 50.0),
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
           children: [
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -27,6 +29,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 20.0),
+                TaskContainer(),
               ],
             )
           ],
