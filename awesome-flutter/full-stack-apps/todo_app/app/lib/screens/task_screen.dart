@@ -26,13 +26,36 @@ class _TaskScreenState extends State<TaskScreen> {
 
   void fillAppList() {
     _appList.add(
-      Text(
-        _task.title,
-        style: TextStyle(
-          color: appWhite,
-          fontSize: 30.0,
-          fontWeight: FontWeight.w500,
-        ),
+      Row(
+        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        children: [
+          Text(
+            _task.title,
+            style: TextStyle(
+              color: appWhite,
+              fontSize: 30.0,
+              fontWeight: FontWeight.w500,
+            ),
+          ),
+          Row(
+            children: [
+              IconButton(
+                icon: Icon(Icons.arrow_back),
+                color: appGreen,
+                iconSize: 30.0,
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+              ),
+              IconButton(
+                icon: Icon(Icons.delete_outline),
+                color: appRed,
+                iconSize: 30.0,
+                onPressed: () {},
+              ),
+            ],
+          )
+        ],
       ),
     );
     _appList.add(SizedBox(height: 20.0));
