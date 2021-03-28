@@ -1,4 +1,6 @@
+import 'package:app/data/data.dart';
 import 'package:app/models/task_model.dart';
+import 'package:app/widgets/task_card.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
 
@@ -45,6 +47,12 @@ class _TaskScreenState extends State<TaskScreen> {
       ),
     );
     _appList.add(SizedBox(height: 40.0));
+
+    List<String> tasks = _task.tasks;
+
+    for (String myTask in tasks) {
+      _appList.add(TaskCard(task: myTask));
+    }
   }
 
   @override
