@@ -3,6 +3,7 @@ import 'package:app/models/task_model.dart';
 import 'package:app/widgets/task_card.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
+import 'package:rflutter_alert/rflutter_alert.dart';
 
 class TaskScreen extends StatefulWidget {
   final Task task;
@@ -16,6 +17,7 @@ class TaskScreen extends StatefulWidget {
 class _TaskScreenState extends State<TaskScreen> {
   Task _task;
   List<Widget> _appList = [];
+  String newTask;
 
   @override
   void initState() {
@@ -85,7 +87,52 @@ class _TaskScreenState extends State<TaskScreen> {
       floatingActionButton: FloatingActionButton(
         backgroundColor: appGreen,
         child: Icon(Icons.add, color: appWhite, size: 30.0),
-        onPressed: () {},
+        onPressed: () {
+          Alert(
+            closeIcon: Icon(Icons.close, color: appWhite),
+            context: context,
+            title: "CREATE",
+            content: Column(
+              children: <Widget>[
+                SizedBox(height: 20.0),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Task...',
+                    hintStyle: TextStyle(color: Colors.grey),
+                    border: OutlineInputBorder(),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: primaryColor),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: appGreen, width: 2.0),
+                    ),
+                  ),
+                  style: TextStyle(
+                    color: appWhite,
+                  ),
+                  onChanged: (value) => newTask = value,
+                ),
+              ],
+            ),
+            buttons: [
+              DialogButton(
+                onPressed: () {
+                  print(newTask);
+                },
+                color: appGreen,
+                child: Text(
+                  "CREATE",
+                  style: TextStyle(color: appWhite),
+                ),
+              ),
+            ],
+            style: AlertStyle(
+              backgroundColor: secondayrColor,
+              alertBorder: Border(),
+              titleStyle: TextStyle(color: appWhite),
+            ),
+          ).show();
+        },
       ),
       body: SafeArea(
         child: ListView.builder(
