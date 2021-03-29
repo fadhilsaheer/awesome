@@ -34,6 +34,24 @@ class HomeScreenState extends State<HomeScreen> {
     fetchAndAppendNotes();
   }
 
+  void loadContent() {
+    setState(() {
+      isLoading = true;
+      _appList = [
+        Text(
+          'My Notes',
+          style: TextStyle(
+            color: appWhite,
+            fontSize: 30.0,
+            fontWeight: FontWeight.w500,
+          ),
+        ),
+        SizedBox(height: 40.0),
+      ];
+    });
+    fetchAndAppendNotes();
+  }
+
   void fetchAndAppendNotes() async {
     Network networkHelper = Network();
     List<Note> notes = await networkHelper.getNotes();
@@ -58,21 +76,7 @@ class HomeScreenState extends State<HomeScreen> {
             key: refreshKey,
             color: secondayrColor,
             onRefresh: () {
-              setState(() {
-                isLoading = true;
-                _appList = [
-                  Text(
-                    'My Notes',
-                    style: TextStyle(
-                      color: appWhite,
-                      fontSize: 30.0,
-                      fontWeight: FontWeight.w500,
-                    ),
-                  ),
-                  SizedBox(height: 40.0),
-                ];
-              });
-              fetchAndAppendNotes();
+              loadContent();
             },
             child: Scaffold(
               backgroundColor: primaryColor,
@@ -81,7 +85,7 @@ class HomeScreenState extends State<HomeScreen> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                      builder: (_) => CreateNote(),
+                      builder: (_) => CreateNote(loadContent: loadContent),
                     ),
                   );
                 },
