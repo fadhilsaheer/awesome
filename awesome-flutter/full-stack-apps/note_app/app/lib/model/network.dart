@@ -42,4 +42,9 @@ class Network {
 
     return;
   }
+
+  void deleteData(id) async {
+    var url = Uri.parse('${serverUrl}id');
+    await http.delete(url);
+  }
 }
