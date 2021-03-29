@@ -53,7 +53,7 @@ class _CreateNoteState extends State<CreateNote> {
               child: ListView(
                 children: [
                   Text(
-                    "Create Task",
+                    "Create Note",
                     style: TextStyle(
                       color: Colors.white,
                       fontSize: 30.0,
