@@ -1,3 +1,5 @@
+import 'package:app/model/network.dart';
+import 'package:app/model/note_model.dart';
 import 'package:flutter/material.dart';
 import 'package:app/constants.dart';
 
@@ -115,10 +117,17 @@ class _CreateNoteState extends State<CreateNote> {
             RaisedButton(
               onPressed: () {
                 if (title != null &&
-                    content != null &&
+                    category != null &&
                     description != null &&
                     content != null) {
-                  print("do something");
+                  Network networkHelper = Network();
+                  networkHelper.postData(Note(
+                    title: title,
+                    category: category,
+                    description: description,
+                    content: content,
+                  ));
+                  Navigator.pop(context);
                 } else {
                   showDialog(
                     context: context,
