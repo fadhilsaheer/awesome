@@ -1,5 +1,6 @@
 import 'package:app/constants.dart';
 import 'package:app/model/data.dart';
+import 'package:app/model/network.dart';
 import 'package:app/model/note_model.dart';
 import 'package:app/screens/create_screen.dart';
 import 'package:app/widgets/note_container.dart';
@@ -26,9 +27,17 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    for (Note note in note_data) {
-      _appList.add(NoteContainer(note: note));
-    }
+    fetchAndAppendNotes();
+  }
+
+  void fetchAndAppendNotes() async {
+    Network networkHelper = Network();
+    List<Note> notes = await networkHelper.getNotes();
+    setState(() {
+      for (Note note in notes) {
+        _appList.add(NoteContainer(note: note));
+      }
+    });
   }
 
   @override
