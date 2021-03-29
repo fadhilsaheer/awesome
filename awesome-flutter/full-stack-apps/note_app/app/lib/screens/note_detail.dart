@@ -1,4 +1,5 @@
 import 'package:app/constants.dart';
+import 'package:app/model/network.dart';
 import 'package:app/model/note_model.dart';
 import 'package:flutter/material.dart';
 
@@ -38,7 +39,11 @@ class NoteDetail extends StatelessWidget {
                     IconButton(
                       icon: Icon(Icons.delete_outline),
                       color: appRed,
-                      onPressed: () {},
+                      onPressed: () async {
+                        Network networkHelper = Network();
+                        await networkHelper.deleteData(note.id);
+                        Navigator.pop(context);
+                      },
                     ),
                   ],
                 ),

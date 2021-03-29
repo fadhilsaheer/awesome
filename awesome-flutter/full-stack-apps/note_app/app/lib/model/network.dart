@@ -38,13 +38,13 @@ class Network {
       "description": note.description,
       "content": note.content
     };
-    var response = await http.post(url, body: requestBody);
+    await http.post(url, body: requestBody);
 
     return;
   }
 
   void deleteData(id) async {
-    var url = Uri.parse('${serverUrl}id');
+    var url = Uri.parse('${serverUrl}${id}');
     await http.delete(url);
   }
 }
