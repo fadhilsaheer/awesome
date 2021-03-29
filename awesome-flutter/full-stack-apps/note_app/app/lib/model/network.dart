@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:app/model/note_model.dart';
 import 'package:http/http.dart' as http;
 
-const serverUrl = "https://a6578b6ca07e.ngrok.io/";
+const serverUrl = "https://1c5447fcb2b7.ngrok.io/";
 
 class Network {
   dynamic getNotes() async {
@@ -28,5 +28,18 @@ class Network {
     }
 
     return notes;
+  }
+
+  void postData(Note note) async {
+    var url = Uri.parse(serverUrl);
+    var requestBody = <String, dynamic>{
+      "title": note.title,
+      "category": note.category,
+      "description": note.description,
+      "content": note.content
+    };
+    var response = await http.post(url, body: requestBody);
+
+    return;
   }
 }
