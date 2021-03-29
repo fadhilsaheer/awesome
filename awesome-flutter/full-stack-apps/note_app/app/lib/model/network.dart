@@ -2,7 +2,6 @@ import 'dart:convert';
 import 'package:app/model/note_model.dart';
 import 'package:http/http.dart' as http;
 
-// const serverUrl = "https://34cddf301f6b.ngrok.io/";
 const serverUrl = "http://10.0.2.2:5000/";
 
 class Network {
