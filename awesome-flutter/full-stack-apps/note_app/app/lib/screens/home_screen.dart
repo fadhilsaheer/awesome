@@ -13,6 +13,7 @@ class HomeScreen extends StatefulWidget {
 
 class HomeScreenState extends State<HomeScreen> {
   bool isLoading = true;
+  GlobalKey<RefreshIndicatorState> refreshKey;
 
   List<Widget> _appList = [
     Text(
@@ -29,6 +30,7 @@ class HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
+    refreshKey = GlobalKey<RefreshIndicatorState>();
     fetchAndAppendNotes();
   }
 
@@ -52,27 +54,49 @@ class HomeScreenState extends State<HomeScreen> {
               color: secondayrColor,
             ),
           )
-        : Scaffold(
-            backgroundColor: primaryColor,
-            floatingActionButton: FloatingActionButton(
-              onPressed: () {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => CreateNote(),
+        : RefreshIndicator(
+            key: refreshKey,
+            color: secondayrColor,
+            onRefresh: () {
+              setState(() {
+                isLoading = true;
+                _appList = [
+                  Text(
+                    'My Notes',
+                    style: TextStyle(
+                      color: appWhite,
+                      fontSize: 30.0,
+                      fontWeight: FontWeight.w500,
+                    ),
                   ),
-                );
-              },
-              backgroundColor: appGreen,
-              child: Icon(Icons.add, size: 35.0),
-            ),
-            body: SafeArea(
-              child: ListView.builder(
-                padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
-                itemCount: _appList.length,
-                itemBuilder: (BuildContext context, int index) {
-                  return _appList[index];
+                  SizedBox(height: 40.0),
+                ];
+              });
+              fetchAndAppendNotes();
+            },
+            child: Scaffold(
+              backgroundColor: primaryColor,
+              floatingActionButton: FloatingActionButton(
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => CreateNote(),
+                    ),
+                  );
                 },
+                backgroundColor: appGreen,
+                child: Icon(Icons.add, size: 35.0),
+              ),
+              body: SafeArea(
+                child: ListView.builder(
+                  padding:
+                      EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
+                  itemCount: _appList.length,
+                  itemBuilder: (BuildContext context, int index) {
+                    return _appList[index];
+                  },
+                ),
               ),
             ),
           );
