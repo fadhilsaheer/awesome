@@ -57,7 +57,7 @@ class HomeScreenState extends State<HomeScreen> {
     List<Note> notes = await networkHelper.getNotes();
     setState(() {
       for (Note note in notes) {
-        _appList.add(NoteContainer(note: note));
+        _appList.add(NoteContainer(note: note, loadContent: loadContent));
       }
       isLoading = false;
     });

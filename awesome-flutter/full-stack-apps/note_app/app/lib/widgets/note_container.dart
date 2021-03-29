@@ -5,8 +5,9 @@ import 'package:flutter/material.dart';
 
 class NoteContainer extends StatelessWidget {
   final Note note;
+  final Function loadContent;
 
-  NoteContainer({this.note});
+  NoteContainer({this.note, this.loadContent});
 
   @override
   Widget build(BuildContext context) {
@@ -15,7 +16,7 @@ class NoteContainer extends StatelessWidget {
         Navigator.push(
           context,
           MaterialPageRoute(
-            builder: (_) => NoteDetail(note: note),
+            builder: (_) => NoteDetail(note: note, loadContent: loadContent),
           ),
         );
       },
