@@ -3,7 +3,7 @@ const mongoose = require("mongoose");
 const connectDb = () => {
   return new Promise((resolve, reject) => {
     mongoose
-      .connect("mongodb://localhost:27017/notes")
+      .connect("mongodb://localhost:27017/notes", { useUnifiedTopology: true })
       .then(() => {
         resolve();
       })
@@ -15,15 +15,15 @@ const connectDb = () => {
 };
 
 const schema = mongoose.Schema({
-    title: String,
-    category: String,
-    description: String,
-    content: String,
+  title: String,
+  category: String,
+  description: String,
+  content: String,
 });
 
 const noteModel = mongoose.model("notes", schema);
 
 module.exports = {
   connectDb,
-  noteModel
+  noteModel,
 };

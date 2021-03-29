@@ -4,6 +4,7 @@ import 'package:app/model/note_model.dart';
 import 'package:app/screens/create_screen.dart';
 import 'package:app/widgets/note_container.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -11,6 +12,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class HomeScreenState extends State<HomeScreen> {
+  bool isLoading = true;
+
   List<Widget> _appList = [
     Text(
       'My Notes',
@@ -36,34 +39,42 @@ class HomeScreenState extends State<HomeScreen> {
       for (Note note in notes) {
         _appList.add(NoteContainer(note: note));
       }
+      isLoading = false;
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: primaryColor,
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {
-          Navigator.push(
-            context,
-            MaterialPageRoute(
-              builder: (_) => CreateNote(),
+    return isLoading
+        ? Scaffold(
+            backgroundColor: primaryColor,
+            body: SpinKitFoldingCube(
+              color: secondayrColor,
+            ),
+          )
+        : Scaffold(
+            backgroundColor: primaryColor,
+            floatingActionButton: FloatingActionButton(
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (_) => CreateNote(),
+                  ),
+                );
+              },
+              backgroundColor: appGreen,
+              child: Icon(Icons.add, size: 35.0),
+            ),
+            body: SafeArea(
+              child: ListView.builder(
+                padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
+                itemCount: _appList.length,
+                itemBuilder: (BuildContext context, int index) {
+                  return _appList[index];
+                },
+              ),
             ),
           );
-        },
-        backgroundColor: appGreen,
-        child: Icon(Icons.add, size: 35.0),
-      ),
-      body: SafeArea(
-        child: ListView.builder(
-          padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
-          itemCount: _appList.length,
-          itemBuilder: (BuildContext context, int index) {
-            return _appList[index];
-          },
-        ),
-      ),
-    );
   }
 }

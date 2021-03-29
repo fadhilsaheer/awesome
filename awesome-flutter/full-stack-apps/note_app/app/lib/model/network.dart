@@ -2,7 +2,8 @@ import 'dart:convert';
 import 'package:app/model/note_model.dart';
 import 'package:http/http.dart' as http;
 
-const serverUrl = "https://1c5447fcb2b7.ngrok.io/";
+// const serverUrl = "https://1c5447fcb2b7.ngrok.io/";
+const serverUrl = "https://246788043ef9.ngrok.io/";
 
 class Network {
   dynamic getNotes() async {
