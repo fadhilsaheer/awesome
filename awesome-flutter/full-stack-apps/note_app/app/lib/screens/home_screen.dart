@@ -1,5 +1,4 @@
 import 'package:app/constants.dart';
-import 'package:app/model/data.dart';
 import 'package:app/model/network.dart';
 import 'package:app/model/note_model.dart';
 import 'package:app/screens/create_screen.dart';
