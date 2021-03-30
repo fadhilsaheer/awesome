@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.instagram_stories">
+    <uses-permission android:name="android.permission.INTERNET"/>
    <application
         android:label="instagram_stories"
         android:icon="@mipmap/ic_launcher">
