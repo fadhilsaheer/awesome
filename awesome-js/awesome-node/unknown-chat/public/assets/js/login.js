@@ -2,7 +2,7 @@ const socket = io();
 
 // Your web app's Firebase configuration
 var firebaseConfig = {
-  // firebaser coinfig that get from firbase
+  // firebase coinfig that get from firbase
 };
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
