@@ -4,3 +4,4 @@
 /Include
 pyvenv.cfg
 __pycache__
+database.db
