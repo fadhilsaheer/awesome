@@ -8,7 +8,7 @@ auth = Blueprint('auth', __name__)
 
 @auth.route('/login', methods=['GET', 'POST'])
 def login():
-    if request.methos == 'POST':
+    if request.method == 'POST':
         email = request.form.get('email')
         password = request.form.get('password')
 
@@ -41,7 +41,7 @@ def sign_up():
 
         if user:
             flash('User already exists', category='error')
-        
+
         elif len(name) < 3:
             flash("Your name is too short", category='error')
 
