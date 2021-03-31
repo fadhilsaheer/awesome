@@ -37,7 +37,12 @@ def sign_up():
         password1 = request.form.get('password1')
         password2 = request.form.get('password2')
 
-        if len(name) < 3:
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            flash('User already exists', category='error')
+        
+        elif len(name) < 3:
             flash("Your name is too short", category='error')
 
         elif password1 != password2:
