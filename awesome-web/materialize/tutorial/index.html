@@ -22,6 +22,9 @@
     />
     <title>Photo Ninja</title>
     <style>
+      * {
+        outline: none;
+      }
       header {
         background-image: url(/img/man.jpg);
         background-size: cover;
@@ -32,10 +35,11 @@
         padding-top: 4vw;
         padding-bottom: 4vw;
       }
-      .tabs .indicator{
+      .tabs .indicator {
         background-color: #1a237e;
       }
-      .tabs .tab a:focus, .tabs .tab a:focus.active{
+      .tabs .tab a:focus,
+      .tabs .tab a:focus.active {
         background: transparent;
       }
       @media screen and (max-width: 670px) {
@@ -139,7 +143,9 @@
         <div class="col s12 l6 offset-l2">
           <ul class="tabs">
             <li class="tab col s6">
-              <a href="#photography" class="indigo-text text-darken-4">Photography</a>
+              <a href="#photography" class="indigo-text text-darken-4"
+                >Photography</a
+              >
             </li>
             <li class="tab col s6">
               <a href="#editing" class="indigo-text text-darken-4">Editing</a>
@@ -179,24 +185,61 @@
     </div>
 
     <!-- contact form -->
-    <div class="container">
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at
-        lacus congue, suscipit elit nec, tincidunt orci.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at
-        lacus congue, suscipit elit nec, tincidunt orci.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at
-        lacus congue, suscipit elit nec, tincidunt orci.
-      </p>
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum at
-        lacus congue, suscipit elit nec, tincidunt orci.
-      </p>
-    </div>
+    <section class="section container" id="contact">
+      <div class="row">
+        <div class="s12 l5 col">
+          <h2 class="indigo-text text-darken-4">Get In Touch</h2>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+            at lacus congue, suscipit elit nec, tincidunt orci.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+            at lacus congue, suscipit elit nec, tincidunt orci.
+          </p>
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vestibulum
+            at lacus congue, suscipit elit nec, tincidunt orci.
+          </p>
+        </div>
+        <div class="col s12 l5 offset-l2">
+          <form action="">
+            <div class="input-field">
+              <i class="material-icons prefix">email</i>
+              <input type="email" id="email" />
+              <label for="email">Your Email</label>
+            </div>
+            <div class="input-field">
+              <i class="material-icons prefix">message</i>
+              <textarea class="materialize-textarea" id="message"></textarea>
+              <label for="message">Your message</label>
+            </div>
+            <div class="input-field">
+              <input type="text" id="date" class="datepicker" />
+              <label for="data">Choose a date you need me for</label>
+            </div>
+            <div class="input-field">
+              <p>Services required...</p>
+              <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Photography</span>
+                </label>
+              </p>
+              <p>
+                <label>
+                  <input type="checkbox" />
+                  <span>Editing</span>
+                </label>
+              </p>
+            </div>
+            <div class="input-field center">
+              <button class="btn">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
 
     <!-- footer -->
 
@@ -209,6 +252,9 @@
         $(".materialboxed").materialbox();
         $(".parallax").parallax();
         $(".tabs").tabs();
+        $(".datepicker").datepicker({
+          disableWeekends: true,
+        });
       });
     </script>
   </body>
