@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/data/data.dart';
+import 'package:food_delivery/models/order.dart';
 
 class CartScreen extends StatefulWidget {
   @override
@@ -6,8 +8,73 @@ class CartScreen extends StatefulWidget {
 }
 
 class _CartScreenState extends State<CartScreen> {
+  Widget _buildCartItem(Order order) {
+    return Container(
+      padding: EdgeInsets.all(20.0),
+      height: 170.0,
+      child: Row(
+        children: [
+          Row(
+            children: [
+              Container(
+                width: 150.0,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage(order.food.imageUrl),
+                    fit: BoxFit.cover,
+                  ),
+                  borderRadius: BorderRadius.circular(15.0),
+                ),
+              ),
+              Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    order.food.name,
+                    style: TextStyle(
+                      fontSize: 20.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  SizedBox(height: 10.0),
+                  Text(
+                    order.restaurant.name,
+                    style: TextStyle(
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  )
+                ],
+              )
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold();
+    return Scaffold(
+      appBar: AppBar(
+        title: Text("Cart (${currentUser.cart.length})"),
+        centerTitle: true,
+      ),
+      body: ListView.separated(
+        itemCount: currentUser.cart.length,
+        physics: BouncingScrollPhysics(),
+        itemBuilder: (BuildContext context, int index) {
+          Order order = currentUser.cart[index];
+          return _buildCartItem(order);
+        },
+        separatorBuilder: (BuildContext context, int index) {
+          return Divider(
+            height: 1.0,
+            color: Colors.grey,
+          );
+        },
+      ),
+    );
   }
 }

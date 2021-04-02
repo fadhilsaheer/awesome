@@ -110,7 +110,7 @@ class HomeScreen extends StatelessWidget {
               }));
             },
             child: Text(
-              'Cart ${currentUser.cart.length}',
+              'Cart (${currentUser.cart.length})',
               style: TextStyle(
                 color: Colors.white,
                 fontSize: 20.0,
