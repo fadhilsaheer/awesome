@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:food_delivery/data/data.dart';
 import 'package:food_delivery/models/restaurant.dart';
+import 'package:food_delivery/screens/cart_screen.dart';
 import 'package:food_delivery/screens/restaurant_screen.dart';
 import 'package:food_delivery/widgets/rating_stars.dart';
 import 'package:food_delivery/widgets/recent_orders.dart';
@@ -103,7 +104,11 @@ class HomeScreen extends StatelessWidget {
         centerTitle: true,
         actions: [
           FlatButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(context, MaterialPageRoute(builder: (_) {
+                return CartScreen();
+              }));
+            },
             child: Text(
               'Cart ${currentUser.cart.length}',
               style: TextStyle(
