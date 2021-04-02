@@ -29,7 +29,7 @@ class _ChatAppState extends State<ChatApp> {
   }
 
   void connectWithServer() {
-    const String serverUrl = "http://10.0.2.2:5000/";
+    const String serverUrl = "http://10.0.2.2:5000/"; // user you server url
 
     io.Socket socket = io.io(serverUrl);
     socket.onConnect((_) {
