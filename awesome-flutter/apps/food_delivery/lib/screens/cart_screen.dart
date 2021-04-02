@@ -50,6 +50,55 @@ class _CartScreenState extends State<CartScreen> {
                             fontWeight: FontWeight.w600,
                           ),
                           overflow: TextOverflow.ellipsis,
+                        ),
+                        SizedBox(height: 10.0),
+                        Container(
+                          width: 100.0,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10.0),
+                            border: Border.all(
+                              width: 0.8,
+                              color: Colors.black54,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              GestureDetector(
+                                onTap: () {},
+                                child: Text(
+                                  "-",
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                              SizedBox(width: 20.0),
+                              Text(
+                                order.quantity.toString(),
+                                style: TextStyle(
+                                  fontSize: 20.0,
+                                  fontWeight: FontWeight.w600,
+                                ),
+                              ),
+                              SizedBox(
+                                width: 20.0,
+                              ),
+                              GestureDetector(
+                                onTap: () {},
+                                child: Text(
+                                  "+",
+                                  style: TextStyle(
+                                    color: Theme.of(context).primaryColor,
+                                    fontSize: 20.0,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
                         )
                       ],
                     ),
