@@ -107,11 +107,14 @@ class _CartScreenState extends State<CartScreen> {
               ],
             ),
           ),
-          Text(
-            '\$${order.quantity * order.food.price}',
-            style: TextStyle(
-              fontSize: 16.0,
-              fontWeight: FontWeight.w600,
+          Container(
+            margin: EdgeInsets.all(10.0),
+            child: Text(
+              '\$${order.quantity * order.food.price}',
+              style: TextStyle(
+                fontSize: 16.0,
+                fontWeight: FontWeight.w600,
+              ),
             ),
           )
         ],
