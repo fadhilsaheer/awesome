@@ -19,6 +19,7 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
     _buildMenuItem(Food menuItem) {
       return Center(
         child: Stack(
+          alignment: Alignment.center,
           children: [
             Container(
               height: 175.0,
@@ -52,6 +53,31 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
                     0.9,
                   ],
                 ),
+              ),
+            ),
+            Positioned(
+              bottom: 65.0,
+              child: Column(
+                children: [
+                  Text(
+                    menuItem.name,
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 24.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                  Text(
+                    '\$${menuItem.price}',
+                    style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 18.0,
+                      fontWeight: FontWeight.bold,
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
               ),
             )
           ],
