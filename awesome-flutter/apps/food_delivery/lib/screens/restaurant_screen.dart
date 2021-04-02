@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:food_delivery/data/data.dart';
 import 'package:food_delivery/models/restaurant.dart';
 
 class RestaurantScreen extends StatefulWidget {
@@ -18,11 +19,14 @@ class _RestaurantScreenState extends State<RestaurantScreen> {
         children: [
           Stack(
             children: [
-              Image(
-                image: AssetImage(widget.restaurant.imageUrl),
-                height: 220.0,
-                width: MediaQuery.of(context).size.width,
-                fit: BoxFit.cover,
+              Hero(
+                tag: widget.restaurant.imageUrl,
+                child: Image(
+                  image: AssetImage(widget.restaurant.imageUrl),
+                  height: 220.0,
+                  width: MediaQuery.of(context).size.width,
+                  fit: BoxFit.cover,
+                ),
               ),
               Padding(
                 padding: const EdgeInsets.symmetric(
