@@ -4,6 +4,7 @@ const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
+
 module.exports = {
     Mutation: {
         async register(_, { registerInput: { username, email, password, confirmPassword } }, context, info){
@@ -22,7 +23,7 @@ module.exports = {
                 id: res.id,
                 email: res.email,
                 username: res.username,
-            }, process.env.key || 'your-secret-password', { expiresIn: '1h' });
+            }, process.env.jwtKey, { expiresIn: '1h' });
 
             return {
                 ...res._doc,
