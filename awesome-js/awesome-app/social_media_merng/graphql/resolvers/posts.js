@@ -1,4 +1,5 @@
 const Post = require("../../models/Post");
+const checkAuth = require("../../utils/checkAuth");
 
 module.exports = {
     Query: {
@@ -24,8 +25,19 @@ module.exports = {
         }
     },
     Mutation: {
-        async createPost(_, { body }){
-            
+        async createPost(_, { body }, context){
+            const user = checkAuth(context);
+
+            const newPost = new Post({
+                body,
+                user: user.id,
+                username: user.username,
+                createdAt: new Date().toISOString()
+            });
+
+            const post = await newPost.save();
+
+            return post;
         }
     }
 }
