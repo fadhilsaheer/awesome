@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
@@ -20,7 +22,13 @@ module.exports = {
                 id: res.id,
                 email: res.email,
                 username: res.username,
-            }, );
+            }, process.env.key || 'your-secret-password', { expiresIn: '1h' });
+
+            return {
+                ...res._doc,
+                id: res._id,
+                token
+            };
         }
     }
 }
