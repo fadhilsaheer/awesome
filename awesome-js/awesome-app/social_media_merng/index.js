@@ -1,3 +1,5 @@
+require("dotenv").config(); // for accessing env vars
+
 const { ApolloServer } = require("apollo-server");
 const gql = require("graphql-tag")
 
