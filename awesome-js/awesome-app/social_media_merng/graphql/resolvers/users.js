@@ -8,7 +8,7 @@ const { UserInputError } = require("apollo-server");
 const { validateInputRegisters, validateInputLogin } = require("../../utils/validators");
 
 function generateToken(user){
-    jwt.sign({
+    return jwt.sign({
         id: user.id,
         email: user.email,
         username: user.username,
@@ -20,6 +20,10 @@ module.exports = {
         async login(_, { username, password }){
             const { errors, valid } = validateInputLogin(username, password);
             const user = await User.findOne({ username });
+
+            if(!valid){
+                throw new UserInputError('Errors', { errors });
+            }
 
             if(!user){
                 errors.general = "User not found";
