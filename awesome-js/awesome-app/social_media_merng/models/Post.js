@@ -1,4 +1,4 @@
-const { Model, Schema } = require("mongoose");
+const { model, Schema } = require("mongoose");
 
 const postSchema = new Schema({
     body: String,
@@ -22,4 +22,4 @@ const postSchema = new Schema({
     }
 });
 
-module.exports = Model('Post', postSchema);
+module.exports = model('Post', postSchema);
