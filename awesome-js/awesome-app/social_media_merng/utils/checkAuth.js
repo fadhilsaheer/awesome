@@ -18,6 +18,6 @@ module.exports = (context) => {
             throw new Error("Authentication must be 'Bearer [token]'")
         }
     }else{
-        throw new Error("Authentication header must be provided")
+        throw new Error("Authorization header must be provided")
     }
 }
