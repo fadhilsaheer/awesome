@@ -59,7 +59,7 @@ module.exports = {
 
             const user = await User.findOne({ username });
 
-            if(user.length != 0){
+            if(user){
                 throw new UserInputError('Username is taken', {
                     errors: {
                         username: 'This username is taken'
