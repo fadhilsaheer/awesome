@@ -3,11 +3,20 @@ require("dotenv").config();
 const User = require("../../models/User");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
+
 const { UserInputError } = require("apollo-server");
+const { validateInputRegisters } = require("../../utils/validators");
 
 module.exports = {
     Mutation: {
         async register(_, { registerInput: { username, email, password, confirmPassword } }){
+
+            // validating forms
+
+            const { errors, valid } = validateInputRegisters(username, email, password, confirmPassword);
+            if(!valid){
+                throw new UserInputError("Errors", { errors });
+            }
 
             // validating user
 
