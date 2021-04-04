@@ -17,10 +17,11 @@ module.exports = {
             const post = await Post.findById(postId);
 
             if(post){
+
                 post.comments.unshift({
                     body,
                     username,
-                    createdAt: new Date().toISOString()
+                    createdAt: new Date().toISOString(),
                 });
 
                 await post.save();
