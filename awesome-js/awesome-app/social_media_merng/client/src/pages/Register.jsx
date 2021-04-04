@@ -1,21 +1,18 @@
 import { useState } from 'react';
 import { Button, Form } from 'semantic-ui-react';
 import { useMutation } from '@apollo/client';
+import { useForm } from '../utils/hook';
 
 import gql from 'graphql-tag';
 
 const Register = (props) => {
     const [errors, setErrors] = useState({});
-    const [values, setValues] = useState({
+    const { onChange, onSubmit, values } = useForm(registerUser, {
         username: '',
         email: '',
         password: '',
         confirmPassword: ''
     });
-
-    const onChange = (e) => {
-        setValues({ ...values, [e.target.name]: e.target.value });
-    }
 
     const [addUser, { loading }] = useMutation(REGISTER_USER, {
         variables: values,
@@ -27,8 +24,9 @@ const Register = (props) => {
         }
     })
 
-    const onSubmit = (e) => {
-        e.preventDefault()
+    // for fixing bug
+    // all function with the 'function' keyword will stay up in js
+    function registerUser(){
         addUser();
     }
 
