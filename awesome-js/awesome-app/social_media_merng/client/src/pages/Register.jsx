@@ -4,7 +4,7 @@ import { useMutation } from '@apollo/client';
 
 import gql from 'graphql-tag';
 
-const Register = () => {
+const Register = (props) => {
     const [errors, setErrors] = useState({});
     const [values, setValues] = useState({
         username: '',
@@ -19,8 +19,8 @@ const Register = () => {
 
     const [addUser, { loading }] = useMutation(REGISTER_USER, {
         variables: values,
-        update(proxy, result) {
-            console.log(result);
+        update(_, result) {
+            props.history.push('/');
         },
         onError(err) {
             setErrors(err.graphQLErrors[0].extensions.exception.errors);
