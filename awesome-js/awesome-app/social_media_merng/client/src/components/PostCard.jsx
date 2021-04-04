@@ -1,10 +1,11 @@
 import { useContext } from 'react';
 import { Card, Icon, Label, Image, Button } from 'semantic-ui-react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { AuthContext } from '../context/auth';
 
 import moment from 'moment'
 import LikeButton from './likeButton';
+import DeleteButton from './DeleteButton';
 
 const PostCard = ({ post: { body, username, createdAt, likeCount, commentCount, likes, id } }) => {
 
@@ -13,6 +14,8 @@ const PostCard = ({ post: { body, username, createdAt, likeCount, commentCount, 
     const likePost = () => {
         console.log('liked')
     }
+
+    const location = useHistory();
 
 
     return (
@@ -25,15 +28,11 @@ const PostCard = ({ post: { body, username, createdAt, likeCount, commentCount, 
             </Card.Content>
             <Card.Content extra>
             <LikeButton post={{ id, likes, likeCount }} user={user} />
-            <Button as='div' labelPosition='right' as={Link} to={`/posts/${id}`}>
+            <Button as='div' labelPosition='right' onClick={()=> location.push(`/posts/${id}`)}>
                 <Button color='blue' basic><Icon name='comments' /></Button>
                 <Label as='a' basic color='blue' pointing='left'>{commentCount}</Label>
             </Button>
-            { user && user.username === username && (
-                <Button as="div" color="red" onClick={likePost} floated="right">
-                    <Icon name="trash" style={{ margin: 0 }} />
-                </Button>
-            )}
+            { user && user.username === username && <DeleteButton postId={id} />}
             </Card.Content>
         </Card>
     );
