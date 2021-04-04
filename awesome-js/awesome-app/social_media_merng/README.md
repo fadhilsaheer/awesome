@@ -8,7 +8,7 @@ Tutorial from https://youtu.be/n1mdAPFq2Os
 
 <br />
 
-<img src="./screenshots/home.png"  alt="home screen" width="45%" /> | <img src="./screenshots/comments.png"  alt="comment screen" width="45%" />
+<img src="./screenshots/home.PNG"  alt="home screen" width="45%" /> | <img src="./screenshots/comments.PNG"  alt="comment screen" width="45%" />
 
 <br />
 
