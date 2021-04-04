@@ -8,3 +8,7 @@
 .form-container{
     margin-top: 50px;
 }
+
+.ui.teal.button:focus, .ui.teal.buttons .button:focus{
+    background-color: #00b5ad;
+}
