@@ -6,21 +6,24 @@ import { AuthContext } from '../context/auth';
 import gql from 'graphql-tag';
 import moment from 'moment';
 import LikeButton from '../components/likeButton';
+import DeleteButton from '../components/DeleteButton';
 
 const SinglePost = (props) => {
     const { user } = useContext(AuthContext);
     const postId = props.match.params.postId;
 
 
-    const { data: { getPost } } = useQuery(FETCH_POST_QUERY, {
+    const { data } = useQuery(FETCH_POST_QUERY, {
         variables: { postId }
     })
 
+    const post = data?.getPost;
+
     let postMarkup;
-    if (!getPost) {
+    if (!post) {
         postMarkup = <p>Loading post..</p>
     } else {
-        const { id, body, createdAt, username, likeCount, commentCount, comments, likes } = getPost;
+        const { id, body, createdAt, username, likeCount, commentCount, comments, likes } = post;
 
         postMarkup = (
             <Grid>
@@ -42,17 +45,17 @@ const SinglePost = (props) => {
                                     <Button basic color="blue"><Icon name="comments" /></Button>
                                     <Label basic color="blue" pointing="left">{ commentCount }</Label>
                                 </Button>
+                                {user && user.username === username && <DeleteButton postId={id} callback={()=> props.history.push('/')} />}
                             </Card.Content>
                         </Card>
                     </Grid.Column>
                 </Grid.Row>
             </Grid>
         );
+
     }
 
-    return (
-        <h2>Single post</h2>
-    );
+    return postMarkup;
 }
 
 const FETCH_POST_QUERY = gql`

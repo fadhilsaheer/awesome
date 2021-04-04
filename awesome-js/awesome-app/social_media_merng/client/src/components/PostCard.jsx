@@ -11,10 +11,6 @@ const PostCard = ({ post: { body, username, createdAt, likeCount, commentCount, 
 
     const { user } = useContext(AuthContext);
 
-    const likePost = () => {
-        console.log('liked')
-    }
-
     const location = useHistory();
 
 
