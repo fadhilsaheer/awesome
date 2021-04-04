@@ -10,7 +10,7 @@ module.exports.validateInputRegisters = (
         errors.username = 'Username must not be empty'
     }
     if(email.trim() === ''){
-        errors.username = 'Email must not be empty'
+        errors.email = 'Email must not be empty'
     }else{
         const regEx = /^([0-9a-zA-Z]([-.\w]*[0-9a-zA-Z])*@([0-9a-zA-Z][-\w]*[0-9a-zA-Z]\.)+[a-zA-Z]{2,9})$/; // regex for validating emails
         if(!email.match(regEx)){
@@ -36,7 +36,7 @@ module.exports.validateInputLogin = (username, password) => {
         errors.username = 'Username must not be empty'
     }
     if(password === ''){
-        errors.username = 'Password must not be empty'
+        errors.password = 'Password must not be empty'
     }
 
     return {
