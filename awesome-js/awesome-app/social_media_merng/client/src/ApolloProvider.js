@@ -1,17 +1,28 @@
 import React from 'react';
 import App from './App';
 import { ApolloClient, InMemoryCache, createHttpLink, ApolloProvider } from '@apollo/client'
+import { setContext } from 'apollo-link-context';
 
 const httpLink = createHttpLink({
     uri: 'http://localhost:5000'
 });
 
-const client = new ApolloClient({
-    link: httpLink,
-    cache: new InMemoryCache(),
-})
+const authLink = setContext(()=>{
+    const token = localStorage.getItem("jwtToken");
+    return{
+        headers: {
+            Authorization: token ? `Bearer ${token}` : '' 
+        }
+    }
+});
 
-const ApolloProvderRender = () => {
+const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+});
+
+
+const ApolloProviderRender = () => {
     return (
         <ApolloProvider client={client}>
             <App />
@@ -19,4 +30,4 @@ const ApolloProvderRender = () => {
     );
 }
  
-export default ApolloProvderRender;
+export default ApolloProviderRender;
