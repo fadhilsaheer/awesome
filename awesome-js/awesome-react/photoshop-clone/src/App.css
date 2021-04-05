@@ -28,7 +28,30 @@
 
 .sidebar {
   grid-area: sidebar;
-  background: purple;
+  background-color: hsl(265, 100%, 86%);
+  border-left: 1px solid hsl(265, 100%, 56%);
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+}
+
+.sidebar-item {
+  cursor: pointer;
+  outline: none;
+  border: none;
+  background-color: hsl(265, 100%, 86%);
+  padding: 1rem;
+  position: relative;
+  transition: background-color 150ms;
+}
+
+.sidebar-item:hover,
+.sidebar-item:focus {
+  background-color: hsl(265, 100%, 76%);
+}
+
+.sidebar-item.active {
+  background-color: hsl(265, 100%, 70%);
 }
 
 .slider-container {
