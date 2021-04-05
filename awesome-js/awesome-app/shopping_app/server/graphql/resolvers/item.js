@@ -1,7 +1,6 @@
 const Item = require("../../models/Item");
 const checkAuth = require("../../utils/checkAuth");
 const { AuthenticationError } = require("apollo-server");
-const { doTypesOverlap } = require("graphql");
 
 module.exports = {
   Query: {

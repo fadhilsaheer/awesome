@@ -5,10 +5,8 @@ const typeDefs = gql`
         id: ID!,
         name: String!,
         email: String!,
-        password: String!,
         token: String!,
-        isAdmin: Boolean!,
-    },
+    }
     type Item{
         id: ID!,
         name: String!,
