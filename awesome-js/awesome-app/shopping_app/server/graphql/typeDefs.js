@@ -7,18 +7,14 @@ const typeDefs = gql`
         email: String!,
         password: String!,
         token: String!,
-        # isAdmin: Bool!,
     },
-    type Image{
-        src: String!,
-    }
     type Item{
         id: ID!,
         name: String!,
-        images: [Image!],
+        images: [String]!,
         description: String!,
         price: String!,
-        createAt: String!,
+        createdAt: String!,
     },
     input CreateItemDetail{
         name: String!,

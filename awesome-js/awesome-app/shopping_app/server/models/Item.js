@@ -4,11 +4,8 @@ const ItemSchema = new Schema({
     name: String,
     description: String,
     price: String,
-    images: [
-        {
-            src: String
-        }
-    ]
+    images: [String],
+    createdAt: String,
 });
 
 module.exports = model('Items', ItemSchema);
