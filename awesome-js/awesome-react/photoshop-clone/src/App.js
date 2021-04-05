@@ -26,7 +26,7 @@ const DEFAULT_OPTIONS = [
   },
   {
     name: "Saturation",
-    property: "saturation",
+    property: "saturate",
     value: 100,
     range: {
       min: 0,
@@ -90,9 +90,17 @@ function App() {
     });
   }
 
+  function getImageStyle() {
+    const filters = options.map((option) => {
+      return `${option.property}(${option.value}${option.unit})`;
+    });
+
+    return { filter: filters.join(" ") };
+  }
+
   return (
     <div className="container">
-      <div className="main-image" />
+      <div className="main-image" style={getImageStyle()} />
       <div className="sidebar">
         {options.map((option, index) => (
           <SidebarItem
