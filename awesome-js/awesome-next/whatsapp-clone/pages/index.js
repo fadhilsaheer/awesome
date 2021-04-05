@@ -1,14 +1,14 @@
 import Head from 'next/head'
-import styles from '../styles/Home.module.css'
+import Sidebar from '../components/Sidebar'
 
 export default function Home() {
   return (
-    <div className={styles.container}>
+    <div>
       <Head>
         <title>Whatsapp clone</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <h1>Whatsapp Clone</h1>
+      <Sidebar />
     </div>
   )
 }
