@@ -2,6 +2,11 @@ html{
   scroll-behavior: smooth;
 }
 
+*{
+  margin: 0;
+  padding: 0;
+}
+
 a{
   text-decoration: none;
   color: #fff;
@@ -9,4 +14,9 @@ a{
 
 input,button,textarea{
   outline: none;
+}
+
+.navbar-top-icon{
+  position: absolute;
+  right: 0;
 }

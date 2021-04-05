@@ -8,10 +8,13 @@ import Login from "./pages/login";
 import Register from "./pages/register";
 import Item from "./pages/item";
 
+import MenuBar from "./components/MenuBar";
+
 function App() {
   return (
     <AuthProvider>
       <Router>
+        <MenuBar />
         <Container>
           <Route exact path="/" component={Home} />
           <AuthRoute exact path="/login" component={Login} />
