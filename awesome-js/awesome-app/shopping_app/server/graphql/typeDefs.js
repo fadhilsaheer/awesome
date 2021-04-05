@@ -9,10 +9,13 @@ const typeDefs = gql`
         token: String!,
         isAdmin: Bool!,
     },
+    type Image{
+        src: String!,
+    }
     type Item{
         id: ID!,
         name: String!,
-        images: [String!],
+        images: [Image!],
         description: String!,
         price: String!,
     },
