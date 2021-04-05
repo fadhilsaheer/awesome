@@ -7,7 +7,7 @@ const typeDefs = gql`
         email: String!,
         password: String!,
         token: String!,
-        isAdmin: Bool!,
+        # isAdmin: Bool!,
     },
     type Image{
         src: String!,
