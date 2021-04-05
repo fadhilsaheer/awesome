@@ -85,7 +85,7 @@ function App() {
     setOptions((prevOptions) => {
       return prevOptions.map((option, index) => {
         if (index !== selectedOptionIdx) return option;
-        return { ...option, value: target };
+        return { ...option, value: target.value };
       });
     });
   }
