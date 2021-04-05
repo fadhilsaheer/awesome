@@ -1,6 +1,10 @@
-* {
+*,
+*::before,
+*::after {
   box-sizing: border-box;
-  padding: 0;
+}
+
+body {
   margin: 0;
 }
 
@@ -37,8 +41,8 @@
 
 .sidebar-item {
   cursor: pointer;
-  outline: none;
   border: none;
+  outline: none;
   background-color: hsl(265, 100%, 86%);
   padding: 1rem;
   position: relative;
@@ -48,6 +52,10 @@
 .sidebar-item:hover,
 .sidebar-item:focus {
   background-color: hsl(265, 100%, 76%);
+}
+
+.sidebar-item.active {
+  background-color: hsl(265, 100%, 70%);
 }
 
 .sidebar-item::after {
@@ -62,10 +70,6 @@
 
 .sidebar-item:last-child::after {
   display: none;
-}
-
-.sidebar-item.active {
-  background-color: hsl(265, 100%, 70%);
 }
 
 .slider-container {
