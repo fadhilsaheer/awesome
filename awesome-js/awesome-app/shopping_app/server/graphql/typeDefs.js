@@ -18,6 +18,7 @@ const typeDefs = gql`
         images: [Image!],
         description: String!,
         price: String!,
+        createAt: String!,
     },
     input CreateItemDetail{
         name: String!,
