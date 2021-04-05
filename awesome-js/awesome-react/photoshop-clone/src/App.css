@@ -56,6 +56,7 @@ body {
 
 .sidebar-item.active {
   background-color: hsl(265, 100%, 70%);
+  color: white;
 }
 
 .sidebar-item::after {
