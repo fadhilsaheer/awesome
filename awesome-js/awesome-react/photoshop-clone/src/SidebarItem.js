@@ -1,5 +1,5 @@
-function SidebarItem() {
-  return <button className="sidebar-item">Sidebar Item</button>;
+function SidebarItem({ name }) {
+  return <button className="sidebar-item">{name}</button>;
 }
 
 export default SidebarItem;
