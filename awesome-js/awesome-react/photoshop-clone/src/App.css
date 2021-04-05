@@ -50,6 +50,20 @@
   background-color: hsl(265, 100%, 76%);
 }
 
+.sidebar-item::after {
+  content: "";
+  position: absolute;
+  width: 80%;
+  left: 10%;
+  bottom: 0;
+  height: 1px;
+  background-color: hsl(265, 100%, 46%);
+}
+
+.sidebar-item:last-child::after {
+  display: none;
+}
+
 .sidebar-item.active {
   background-color: hsl(265, 100%, 70%);
 }
