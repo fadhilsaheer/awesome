@@ -52,13 +52,36 @@ const Options = ({ children }) => {
                             <Typography gutterBottom variant="h6">Account Info</Typography>
                             <TextField label="Name" value={name} onChange={({ target }) => setName(target.value)} />
                             <CopyToClipboard text={me} className={classes.margin}>
-                                <Button 
-                                    variant="contained" 
-                                    color="primary" 
-                                    fullWidth 
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    fullWidth
                                     startIcon={<Assignment fontSize="large" />}
-                                ></Button>
+                                >Copy Your Id</Button>
                             </CopyToClipboard>
+                        </Grid>
+                        <Grid item xs={12} md={6} className={classes.padding}>
+                            <Typography gutterBottom variant="h6">Make a call</Typography>
+                            <TextField label="Id to call" value={idToCall} onChange={({ target }) => setIdToCall(target.value)} />
+                            {callAccepted && !callEnded ? (
+                                <Button
+                                    variant="contained"
+                                    color="secondary"
+                                    fullWidth
+                                    startIcon={<PhoneDisabled fontSize="large" />}
+                                    onClick={leaveCall}
+                                    className={classes.margin}
+                                >Hang Up</Button>
+                            ) : (
+                                <Button
+                                    variant="contained"
+                                    color="primary"
+                                    fullWidth
+                                    startIcon={<Phone fontSize="large" />}
+                                    onClick={() => callUser(idToCall)}
+                                    className={classes.margin}
+                                >Call</Button>
+                            )}
                         </Grid>
                     </Grid>
                 </form>
