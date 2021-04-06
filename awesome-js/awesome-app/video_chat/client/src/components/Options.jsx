@@ -1,5 +1,5 @@
 import { Button, TextField, Grid, Typography, Container, Paper } from '@material-ui/core';
-import { useContext } from 'react';
+import { useContext, useState } from 'react';
 import { SocketContext } from '../SocketContext';
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -38,12 +38,32 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Options = ({ children }) => {
+    const { me, callAccepted, name, setName, leaveCall, callUser, callEnded } = useContext(SocketContext);
+    const [idToCall, setIdToCall] = useState('');
+
     const classes = useStyles();
 
     return (
-        <div>
-            {children}
-        </div>
+        <Container className={classes.container}>
+            <Paper elevation={10} className={classes.paper}>
+                <form className={classes.root} noValidate autoComplete="off">
+                    <Grid container className={classes.gridContainer}>
+                        <Grid item xs={12} md={6} className={classes.padding}>
+                            <Typography gutterBottom variant="h6">Account Info</Typography>
+                            <TextField label="Name" value={name} onChange={({ target }) => setName(target.value)} />
+                            <CopyToClipboard text={me} className={classes.margin}>
+                                <Button 
+                                    variant="contained" 
+                                    color="primary" 
+                                    fullWidth 
+                                    startIcon={<Assignment fontSize="large" />}
+                                ></Button>
+                            </CopyToClipboard>
+                        </Grid>
+                    </Grid>
+                </form>
+            </Paper>
+        </Container>
     );
 }
 
