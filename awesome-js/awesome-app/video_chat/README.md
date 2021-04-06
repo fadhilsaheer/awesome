@@ -8,12 +8,7 @@ get a demo here https://awesome-js-webrtc-demo.herokuapp.com/
 
 <br />
 
-This project is build using
-
-- React
-- Node js
-- Webrtc
-- And many more
+This project is build using WEBRTC REACT NODE JS & more
 
 <br>
 
