@@ -37,6 +37,12 @@ const VideoPlayer = () => {
                     <video autoPlay playsInline muted ref={'myVideo'} className={classes.video} />
                 </Grid>
             </Paper>
+            <Paper className={classes.paper}>
+                <Grid item xs={12} md={6}>
+                    <Typography variant="h5" gutterBottom>Name</Typography>
+                    <video autoPlay playsInline ref={'userVideo'} className={classes.video} />
+                </Grid>
+            </Paper>
         </Grid>
     );
 }
