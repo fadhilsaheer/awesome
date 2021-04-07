@@ -10,8 +10,12 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: CustomScrollView(
+        physics: BouncingScrollPhysics(),
         slivers: [
           SliverAppBar(
+            expandedHeight: 100.0,
+            forceElevated: true,
+            floating: true,
             leading: IconButton(
               icon: Icon(Icons.settings),
               iconSize: 30.0,
