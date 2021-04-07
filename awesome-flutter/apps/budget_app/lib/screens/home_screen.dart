@@ -39,7 +39,7 @@ class _HomeScreenState extends State<HomeScreen> {
             delegate: SliverChildBuilderDelegate(
               (BuildContext context, int index) {
                 return Container(
-                  margin: EdgeInsets.all(10.0),
+                  margin: EdgeInsets.fromLTRB(10.0, 20.0, 10.0, 10.0),
                   decoration: BoxDecoration(
                     color: Colors.white,
                     boxShadow: [
