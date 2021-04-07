@@ -1,9 +1,12 @@
 import React from 'react'
+import Post from './post/Post';
 
 function Posts() {
     return (
         <div>
-            <h1>Form</h1>
+            <h1>POSTS</h1>
+            <Post />
+            <Post />
         </div>
     )
 }
