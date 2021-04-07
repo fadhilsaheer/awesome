@@ -13,6 +13,54 @@ class CategoryScreen extends StatefulWidget {
 }
 
 class _CategoryScreenState extends State<CategoryScreen> {
+  Widget _buildExpenses() {
+    List<Widget> expenceList = [];
+    widget.category.expenses.forEach((Expense expense) {
+      expenceList.add(Container(
+        alignment: Alignment.center,
+        margin: EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+        height: 80.0,
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.white,
+          borderRadius: BorderRadius.circular(10.0),
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black12,
+              offset: Offset(0, 2),
+              blurRadius: 6.0,
+            )
+          ],
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(30.0),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Text(
+                expense.name,
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+              Text(
+                '-\$${expense.cost.toStringAsFixed(2)}',
+                style: TextStyle(
+                  fontSize: 20.0,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.red,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ));
+    });
+
+    return Column(children: expenceList);
+  }
+
   @override
   Widget build(BuildContext context) {
     double totalAmountSpent = 0;
@@ -71,7 +119,8 @@ class _CategoryScreenState extends State<CategoryScreen> {
                   ),
                 ),
               ),
-            )
+            ),
+            _buildExpenses(),
           ],
         ),
       ),
