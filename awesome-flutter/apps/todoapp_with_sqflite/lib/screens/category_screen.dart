@@ -27,6 +27,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     getAllCategories();
   }
 
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
+
   getAllCategories() async {
     _categoryList = List<Category>();
     var categories = await _categoryService.readCategory();
@@ -127,6 +129,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                   print(result);
                   Navigator.pop(context);
                   getAllCategories();
+                  _showSuccessSnackBar(Text('Updated'));
                 }
               },
             ),
@@ -157,9 +160,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     );
   }
 
+  _showSuccessSnackBar(message) {
+    var _snackBar = SnackBar(content: message);
+    _globalKey.currentState.showSnackBar(_snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
       appBar: AppBar(
         leading: RaisedButton(
           onPressed: () {
