@@ -1,8 +1,14 @@
 import 'package:todoapp_with_sqflite/models/category.dart';
+import 'package:todoapp_with_sqflite/repositories/repository.dart';
 
 class CategoryService {
-  saveCategory(Category category) {
-    print(category.name);
-    print(category.description);
+  Repository _repository;
+
+  CategoryService() {
+    _repository = Repository();
+  }
+
+  saveCategory(Category category) async {
+    return await _repository.insertData('categories', category.categoryMap());
   }
 }
