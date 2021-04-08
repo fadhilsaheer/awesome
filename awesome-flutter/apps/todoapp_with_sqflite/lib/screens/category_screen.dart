@@ -11,6 +11,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   var _categoryNameController = TextEditingController();
   var _categoryDescriptionController = TextEditingController();
 
+  var _editCategoryNameController = TextEditingController();
+  var _editCategoryDescriptionController = TextEditingController();
+
   var _category = Category();
   var _categoryService = CategoryService();
 
@@ -36,6 +39,16 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     });
   }
 
+  _editCategory(BuildContext context, int categoryId) async {
+    var category = await _categoryService.readCategoryById(categoryId);
+    setState(() {
+      _editCategoryNameController.text = category[0]['name'] ?? 'No name';
+      _editCategoryDescriptionController.text =
+          category[0]['description'] ?? 'No description';
+    });
+    _editFormDialog(context);
+  }
+
   _showFormDialog(BuildContext context) {
     return showDialog(
       context: context,
@@ -58,7 +71,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 var result = await _categoryService.saveCategory(_category);
                 print(result);
                 Navigator.pop(context);
-                setState(() {});
               },
             ),
           ],
@@ -79,6 +91,57 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     labelText: 'Description',
                   ),
                   controller: _categoryDescriptionController,
+                ),
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+
+  _editFormDialog(BuildContext context) {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: [
+            FlatButton(
+              child: Text("Cancel"),
+              onPressed: () => Navigator.pop(context),
+              color: Colors.red,
+            ),
+            FlatButton(
+              child: Text("Update"),
+              color: Colors.blue,
+              onPressed: () async {
+                _category.name = _editCategoryNameController.text;
+                _category.description = _editCategoryDescriptionController.text;
+
+                var result = await _categoryService.saveCategory(_category);
+                print(result);
+                Navigator.pop(context);
+              },
+            ),
+          ],
+          title: Text("Edit Categories Form"),
+          content: SingleChildScrollView(
+            child: Column(
+              children: [
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Write a category',
+                    labelText: 'Category',
+                  ),
+                  controller: _editCategoryNameController,
+                ),
+                TextField(
+                  decoration: InputDecoration(
+                    hintText: 'Write a description',
+                    labelText: 'Description',
+                  ),
+                  controller: _editCategoryDescriptionController,
                 ),
               ],
             ),
@@ -110,7 +173,12 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             child: Card(
               elevation: 8.0,
               child: ListTile(
-                leading: IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                leading: IconButton(
+                  icon: Icon(Icons.edit),
+                  onPressed: () {
+                    _editCategory(context, _categoryList[index].id);
+                  },
+                ),
                 title: Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
