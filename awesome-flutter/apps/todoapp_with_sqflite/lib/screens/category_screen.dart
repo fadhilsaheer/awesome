@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp_with_sqflite/models/category.dart';
+import 'package:todoapp_with_sqflite/services/category_service.dart';
 
 class CategoriesScreen extends StatefulWidget {
   @override
@@ -6,6 +8,12 @@ class CategoriesScreen extends StatefulWidget {
 }
 
 class _CategoriesScreenState extends State<CategoriesScreen> {
+  var _categoryNameController = TextEditingController();
+  var _categoryDescriptionController = TextEditingController();
+
+  var _category = Category();
+  var _categoryService = CategoryService();
+
   _showFormDialog(BuildContext context) {
     return showDialog(
       context: context,
@@ -20,8 +28,13 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
             ),
             FlatButton(
               child: Text("Save"),
-              onPressed: () {},
               color: Colors.blue,
+              onPressed: () {
+                _category.name = _categoryNameController.text;
+                _category.description = _categoryDescriptionController.text;
+
+                _categoryService.saveCategory(_category);
+              },
             ),
           ],
           title: Text("Categories Form"),
@@ -33,12 +46,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                     hintText: 'Write a category',
                     labelText: 'Category',
                   ),
+                  controller: _categoryNameController,
                 ),
                 TextField(
                   decoration: InputDecoration(
                     hintText: 'Write a description',
                     labelText: 'Description',
                   ),
+                  controller: _categoryDescriptionController,
                 ),
               ],
             ),
