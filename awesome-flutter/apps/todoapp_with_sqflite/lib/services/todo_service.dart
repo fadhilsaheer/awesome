@@ -11,4 +11,8 @@ class TodoService {
   saveTodo(Todo todo) async {
     return await _repository.insertData('todos', todo.todoMap());
   }
+
+  readTodos() async {
+    return await _repository.readData('todos');
+  }
 }
