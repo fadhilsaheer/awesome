@@ -160,6 +160,38 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
     );
   }
 
+  _deleteFormDialog(BuildContext context, int categoryId) {
+    return showDialog(
+      context: context,
+      barrierDismissible: true,
+      builder: (BuildContext context) {
+        return AlertDialog(
+          actions: [
+            FlatButton(
+              child: Text("Cancel"),
+              onPressed: () => Navigator.pop(context),
+              color: Colors.blue,
+            ),
+            FlatButton(
+              child: Text("Delete"),
+              color: Colors.red,
+              onPressed: () async {
+                var result = await _categoryService.deleteCategory(categoryId);
+                if (result > 0) {
+                  print(result);
+                  Navigator.pop(context);
+                  getAllCategories();
+                  _showSuccessSnackBar(Text('Deleted'));
+                }
+              },
+            ),
+          ],
+          title: Text("Are you sure ??"),
+        );
+      },
+    );
+  }
+
   _showSuccessSnackBar(message) {
     var _snackBar = SnackBar(content: message);
     _globalKey.currentState.showSnackBar(_snackBar);
@@ -202,7 +234,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       icon: Icon(
                         Icons.delete,
                       ),
-                      onPressed: () {},
+                      onPressed: () {
+                        _deleteFormDialog(context, _categoryList[index].id);
+                      },
                       color: Colors.red,
                     ),
                   ],
