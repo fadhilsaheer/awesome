@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp_with_sqflite/screens/category_screen.dart';
 import 'package:todoapp_with_sqflite/screens/home_screen.dart';
+import 'package:todoapp_with_sqflite/services/category_service.dart';
 
 class DrawerNavigation extends StatefulWidget {
   @override
@@ -8,6 +9,27 @@ class DrawerNavigation extends StatefulWidget {
 }
 
 class _DrawerNavigationState extends State<DrawerNavigation> {
+  List<Widget> _categoryList = List<Widget>();
+
+  CategoryService _categoryService = CategoryService();
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCategories();
+  }
+
+  getAllCategories() async {
+    var categories = await _categoryService.readCategory();
+    categories.forEach((category) {
+      setState(() {
+        _categoryList.add(ListTile(
+          title: Text(category['name']),
+        ));
+      });
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -44,6 +66,8 @@ class _DrawerNavigationState extends State<DrawerNavigation> {
                 ),
               ),
             ),
+            Divider(),
+            Column(children: _categoryList)
           ],
         ),
       ),
