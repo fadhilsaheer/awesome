@@ -19,6 +19,8 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   List<Category> _categoryList = [];
 
+  var category;
+
   @override
   void initState() {
     super.initState();
@@ -40,7 +42,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   }
 
   _editCategory(BuildContext context, int categoryId) async {
-    var category = await _categoryService.readCategoryById(categoryId);
+    category = await _categoryService.readCategoryById(categoryId);
     setState(() {
       _editCategoryNameController.text = category[0]['name'] ?? 'No name';
       _editCategoryDescriptionController.text =
@@ -71,6 +73,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 var result = await _categoryService.saveCategory(_category);
                 print(result);
                 Navigator.pop(context);
+                getAllCategories();
               },
             ),
           ],
@@ -116,12 +119,15 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               child: Text("Update"),
               color: Colors.blue,
               onPressed: () async {
+                _category.id = category[0]['id'];
                 _category.name = _editCategoryNameController.text;
                 _category.description = _editCategoryDescriptionController.text;
-
-                var result = await _categoryService.saveCategory(_category);
-                print(result);
-                Navigator.pop(context);
+                var result = await _categoryService.updateCategory(_category);
+                if (result > 0) {
+                  print(result);
+                  Navigator.pop(context);
+                  getAllCategories();
+                }
               },
             ),
           ],
