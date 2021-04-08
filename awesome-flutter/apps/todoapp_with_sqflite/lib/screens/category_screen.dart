@@ -14,6 +14,28 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   var _category = Category();
   var _categoryService = CategoryService();
 
+  List<Category> _categoryList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    getAllCategories();
+  }
+
+  getAllCategories() async {
+    _categoryList = List<Category>();
+    var categories = await _categoryService.readCategory();
+    categories.forEach((category) {
+      setState(() {
+        var categoryModel = Category();
+        categoryModel.name = category['name'];
+        categoryModel.description = category['description'];
+        categoryModel.id = category['id'];
+        _categoryList.add(categoryModel);
+      });
+    });
+  }
+
   _showFormDialog(BuildContext context) {
     return showDialog(
       context: context,
@@ -36,6 +58,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 var result = await _categoryService.saveCategory(_category);
                 print(result);
                 Navigator.pop(context);
+                setState(() {});
               },
             ),
           ],
@@ -79,8 +102,32 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
         ),
         title: Text("Categories"),
       ),
-      body: Center(
-        child: Text("Welcome to category screen"),
+      body: ListView.builder(
+        itemCount: _categoryList.length,
+        itemBuilder: (BuildContext context, int index) {
+          return Padding(
+            padding: const EdgeInsets.only(top: 8.0, left: 16.0, right: 16.0),
+            child: Card(
+              elevation: 8.0,
+              child: ListTile(
+                leading: IconButton(icon: Icon(Icons.edit), onPressed: () {}),
+                title: Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Text(_categoryList[index].name),
+                    IconButton(
+                      icon: Icon(
+                        Icons.delete,
+                      ),
+                      onPressed: () {},
+                      color: Colors.red,
+                    ),
+                  ],
+                ),
+              ),
+            ),
+          );
+        },
       ),
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add),

@@ -11,4 +11,8 @@ class CategoryService {
   saveCategory(Category category) async {
     return await _repository.insertData('categories', category.categoryMap());
   }
+
+  readCategory() async {
+    return await _repository.readData('categories');
+  }
 }
