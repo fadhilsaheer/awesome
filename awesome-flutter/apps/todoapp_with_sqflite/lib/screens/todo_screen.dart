@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:todoapp_with_sqflite/models/todo.dart';
 import 'package:todoapp_with_sqflite/services/category_service.dart';
 import 'package:intl/intl.dart';
+import 'package:todoapp_with_sqflite/services/todo_service.dart';
 
 class TodoScreen extends StatefulWidget {
   @override
@@ -15,6 +17,7 @@ class _TodoScreenState extends State<TodoScreen> {
   var _selectedValue;
 
   var _categories = List<DropdownMenuItem>();
+  final GlobalKey<ScaffoldState> _globalKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
@@ -53,9 +56,15 @@ class _TodoScreenState extends State<TodoScreen> {
     }
   }
 
+  _showSuccessSnackBar(String message) {
+    var _snackBar = SnackBar(content: Text(message));
+    _globalKey.currentState.showSnackBar(_snackBar);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      key: _globalKey,
       appBar: AppBar(
         title: Text("Created Todo"),
       ),
@@ -104,7 +113,23 @@ class _TodoScreenState extends State<TodoScreen> {
                 ),
                 SizedBox(height: 20.0),
                 RaisedButton(
-                  onPressed: () {},
+                  onPressed: () async {
+                    var todoObject = Todo();
+                    todoObject.title = _todoTitleController.text;
+                    todoObject.description = _todoDescriptionController.text;
+                    todoObject.todoDate = _todoDateController.text;
+                    todoObject.isFinished = 0;
+                    todoObject.category = _selectedValue.toString();
+
+                    var _todoService = TodoService();
+                    var result = await _todoService.saveTodo(todoObject);
+
+                    if (result > 0) {
+                      print(result);
+                      _showSuccessSnackBar('Created');
+                      // Navigator.pop(context);
+                    }
+                  },
                   color: Colors.blue,
                   child: Text("Save"),
                   textColor: Colors.white,
