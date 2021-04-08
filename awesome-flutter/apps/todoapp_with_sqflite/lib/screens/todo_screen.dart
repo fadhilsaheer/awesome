@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoapp_with_sqflite/services/category_service.dart';
+import 'package:intl/intl.dart';
 
 class TodoScreen extends StatefulWidget {
   @override
@@ -7,9 +8,9 @@ class TodoScreen extends StatefulWidget {
 }
 
 class _TodoScreenState extends State<TodoScreen> {
-  var todoTitleController = TextEditingController();
-  var todoDescriptionController = TextEditingController();
-  var todoDateController = TextEditingController();
+  var _todoTitleController = TextEditingController();
+  var _todoDescriptionController = TextEditingController();
+  var _todoDateController = TextEditingController();
 
   var _selectedValue;
 
@@ -34,6 +35,24 @@ class _TodoScreenState extends State<TodoScreen> {
     });
   }
 
+  DateTime _dateTime = DateTime.now();
+
+  _selectedTodoDate(BuildContext context) async {
+    var _pickedDate = await showDatePicker(
+      context: context,
+      initialDate: _dateTime,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2100),
+    );
+
+    if (_pickedDate != null) {
+      setState(() {
+        _dateTime = _pickedDate;
+        _todoDateController.text = DateFormat('yyyy-MM-dd').format(_pickedDate);
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -42,49 +61,55 @@ class _TodoScreenState extends State<TodoScreen> {
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
-        child: Column(
+        child: ListView(
           children: [
-            TextField(
-              controller: todoTitleController,
-              decoration: InputDecoration(
-                labelText: 'Title',
-                hintText: 'Write a todo title',
-              ),
-            ),
-            TextField(
-              controller: todoDescriptionController,
-              decoration: InputDecoration(
-                labelText: 'Description',
-                hintText: 'Write a todo description',
-              ),
-            ),
-            TextField(
-              controller: todoDateController,
-              decoration: InputDecoration(
-                labelText: 'Date',
-                hintText: 'Pick a date',
-                prefix: InkWell(
-                  onTap: () {},
-                  child: Icon(Icons.calendar_today),
+            Column(
+              children: [
+                TextField(
+                  controller: _todoTitleController,
+                  decoration: InputDecoration(
+                    labelText: 'Title',
+                    hintText: 'Write a todo title',
+                  ),
                 ),
-              ),
-            ),
-            DropdownButtonFormField(
-              value: _selectedValue,
-              items: _categories,
-              hint: Text('Category'),
-              onChanged: (value) {
-                setState(() {
-                  _selectedValue = value;
-                });
-              },
-            ),
-            SizedBox(height: 20.0),
-            RaisedButton(
-              onPressed: () {},
-              color: Colors.blue,
-              child: Text("Save"),
-              textColor: Colors.white,
+                TextField(
+                  controller: _todoDescriptionController,
+                  decoration: InputDecoration(
+                    labelText: 'Description',
+                    hintText: 'Write a todo description',
+                  ),
+                ),
+                TextField(
+                  controller: _todoDateController,
+                  decoration: InputDecoration(
+                    labelText: 'Date',
+                    hintText: 'Pick a date',
+                    prefix: InkWell(
+                      onTap: () {
+                        _selectedTodoDate(context);
+                      },
+                      child: Icon(Icons.calendar_today),
+                    ),
+                  ),
+                ),
+                DropdownButtonFormField(
+                  value: _selectedValue,
+                  items: _categories,
+                  hint: Text('Category'),
+                  onChanged: (value) {
+                    setState(() {
+                      _selectedValue = value;
+                    });
+                  },
+                ),
+                SizedBox(height: 20.0),
+                RaisedButton(
+                  onPressed: () {},
+                  color: Colors.blue,
+                  child: Text("Save"),
+                  textColor: Colors.white,
+                )
+              ],
             )
           ],
         ),
