@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/contanst.dart';
+import 'package:todo_app/widgets/todo_container.dart';
 
 class HomeScreen extends StatefulWidget {
   @override
@@ -28,6 +29,14 @@ class _HomeScreenState extends State<HomeScreen> {
               color: Colors.white,
             ),
           ),
+          SizedBox(height: 50.0),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
         ],
       ),
     );
