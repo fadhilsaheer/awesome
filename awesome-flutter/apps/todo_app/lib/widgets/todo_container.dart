@@ -15,14 +15,20 @@ class _TodoContainerState extends State<TodoContainer> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: double.infinity,
       margin: EdgeInsets.only(top: 10.0),
+      padding: EdgeInsets.all(20.0),
+      width: double.infinity,
       height: 100.0,
       decoration: BoxDecoration(
-        color: Color(0xFF17A589),
+        color: secondayrColor,
         borderRadius: BorderRadius.circular(10.0),
       ),
-      // c
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text("My Awesome Todo"),
+        ],
+      ),
     );
   }
 }
