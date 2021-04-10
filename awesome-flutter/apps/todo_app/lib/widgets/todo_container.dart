@@ -19,14 +19,13 @@ class _TodoContainerState extends State<TodoContainer> {
       margin: EdgeInsets.only(top: 10.0),
       height: 100.0,
       decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            accentColor,
-            Colors.teal[700],
-          ],
-        ),
+        color: Color(0xFF17A589),
+        boxShadow: [
+          BoxShadow(
+            blurRadius: 6,
+            color: Colors.blueGrey[900],
+          )
+        ],
         borderRadius: BorderRadius.circular(10.0),
       ),
     );
