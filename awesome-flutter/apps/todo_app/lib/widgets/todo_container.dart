@@ -20,14 +20,9 @@ class _TodoContainerState extends State<TodoContainer> {
       height: 100.0,
       decoration: BoxDecoration(
         color: Color(0xFF17A589),
-        boxShadow: [
-          BoxShadow(
-            blurRadius: 6,
-            color: Colors.blueGrey[900],
-          )
-        ],
         borderRadius: BorderRadius.circular(10.0),
       ),
+      // c
     );
   }
 }
