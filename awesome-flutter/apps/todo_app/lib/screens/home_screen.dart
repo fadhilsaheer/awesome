@@ -16,6 +16,20 @@ class _HomeScreenState extends State<HomeScreen> {
         backgroundColor: accentColor,
         onPressed: () {},
       ),
+      body: ListView(
+        physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
+        children: [
+          Text(
+            "Todos",
+            style: TextStyle(
+              fontSize: 30.0,
+              fontWeight: FontWeight.w600,
+              color: Colors.white,
+            ),
+          ),
+        ],
+      ),
     );
   }
 }
