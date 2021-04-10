@@ -20,41 +20,6 @@ class _TodoContainerState extends State<TodoContainer> {
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key(rng.nextInt(1299834).toString()),
-      confirmDismiss: ,
-      onDismissed: (direction) {
-        showDialog(
-          context: context,
-          builder: (context) {
-            return AlertDialog(
-              backgroundColor: secondayrColor,
-              actions: [
-                TextButton(
-                  onPressed: () => Navigator.pop(context),
-                  child: Text(
-                    "cancel",
-                    style: TextStyle(color: accentColor),
-                  ),
-                ),
-                TextButton(
-                  onPressed: () {},
-                  child: Text(
-                    "delete",
-                    style: TextStyle(color: Colors.redAccent),
-                  ),
-                ),
-              ],
-              content: SingleChildScrollView(
-                child: Text(
-                  "Are you sure ??",
-                  style: TextStyle(
-                    color: Colors.white,
-                  ),
-                ),
-              ),
-            );
-          },
-        );
-      },
       child: Container(
         margin: EdgeInsets.only(top: 15.0),
         padding: EdgeInsets.all(20.0),
