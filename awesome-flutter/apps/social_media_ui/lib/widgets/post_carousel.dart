@@ -130,7 +130,7 @@ class PostCarousel extends StatelessWidget {
         Padding(
           padding: const EdgeInsets.fromLTRB(20.0, 20.0, 20.0, 10.0),
           child: Text(
-            'Posts',
+            title,
             style: TextStyle(
               fontSize: 24.0,
               fontWeight: FontWeight.bold,
