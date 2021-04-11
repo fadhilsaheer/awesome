@@ -87,7 +87,7 @@ class CustomDrawer extends StatelessWidget {
             () => Navigator.pushReplacement(
               context,
               MaterialPageRoute(
-                builder: (_) => ProfileScreen(),
+                builder: (_) => ProfileScreen(user: currentUser),
               ),
             ),
           ),
