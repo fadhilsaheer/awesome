@@ -36,9 +36,9 @@ class PostCarousel extends StatelessWidget {
           ),
         ),
         Positioned(
-          bottom: 0.0,
-          left: 0.0,
-          right: 0.0,
+          bottom: 10.0,
+          left: 10.0,
+          right: 10.0,
           child: Container(
             padding: EdgeInsets.all(12.0),
             height: 110.0,
@@ -48,6 +48,57 @@ class PostCarousel extends StatelessWidget {
                 bottomLeft: Radius.circular(15.0),
                 bottomRight: Radius.circular(15.0),
               ),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.end,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  post.title,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                  overflow: TextOverflow.ellipsis,
+                ),
+                Text(
+                  post.location,
+                  overflow: TextOverflow.ellipsis,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                SizedBox(height: 6.0),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    Row(
+                      children: [
+                        Icon(Icons.favorite, color: Colors.red),
+                        SizedBox(width: 6.0),
+                        Text(
+                          post.likes.toString(),
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      ],
+                    ),
+                    Row(
+                      children: [
+                        Icon(
+                          Icons.comment,
+                          color: Theme.of(context).primaryColor,
+                        ),
+                        SizedBox(width: 6.0),
+                        Text(
+                          post.comments.toString(),
+                          style: TextStyle(fontSize: 18.0),
+                        ),
+                      ],
+                    ),
+                  ],
+                )
+              ],
             ),
           ),
         ),
@@ -76,6 +127,7 @@ class PostCarousel extends StatelessWidget {
           child: PageView.builder(
             controller: pageController,
             itemCount: posts.length,
+            physics: BouncingScrollPhysics(),
             itemBuilder: (BuildContext context, int index) {
               return _buildPost(context, index);
             },
