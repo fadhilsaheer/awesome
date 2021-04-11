@@ -134,6 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                 ),
               ],
             ),
+            SizedBox(height: 50.0),
             PostCarousel(
               pageController: _yourPostPageController,
               title: 'Your Posts',
@@ -144,6 +145,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
               title: 'Favorites',
               posts: widget.user.favorites,
             ),
+            SizedBox(height: 50.0),
           ],
         ),
       ),
