@@ -69,6 +69,17 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 )
               ],
+            ),
+            Padding(
+              padding: const EdgeInsets.all(15.0),
+              child: Text(
+                widget.user.name,
+                style: TextStyle(
+                  fontSize: 25.0,
+                  fontWeight: FontWeight.bold,
+                  letterSpacing: 1.5,
+                ),
+              ),
             )
           ],
         ),
