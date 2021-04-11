@@ -46,7 +46,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ),
                 ),
                 Positioned(
-                  bottom: 0.0,
+                  bottom: 10.0,
                   child: Container(
                     decoration: BoxDecoration(
                       shape: BoxShape.circle,
