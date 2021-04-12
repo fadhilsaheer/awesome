@@ -13,9 +13,7 @@ function Form({ currentId, setCurrentId }) {
     const dispatch = useDispatch();
 
     useEffect(()=>{
-        if(post){
-            setPostData(post);
-        }
+        if(post) setPostData(post);
     }, [post])
 
 
@@ -27,7 +25,8 @@ function Form({ currentId, setCurrentId }) {
         }else{
             dispatch(createPost(postData));
         }
-        
+
+        clear();        
     }
 
     const clear = () => {
