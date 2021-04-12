@@ -6,8 +6,9 @@ import 'package:todo_app/models/todo_model.dart';
 
 class TodoContainer extends StatefulWidget {
   final Todo todo;
+  final Function getAllTodos;
 
-  TodoContainer({this.todo});
+  TodoContainer({this.todo, this.getAllTodos});
 
   @override
   _TodoContainerState createState() => _TodoContainerState();
