@@ -24,7 +24,6 @@ class _TodoContainerState extends State<TodoContainer> {
         margin: EdgeInsets.only(top: 15.0),
         padding: EdgeInsets.all(20.0),
         width: double.infinity,
-        height: 100.0,
         decoration: BoxDecoration(
           color: secondayrColor,
           borderRadius: BorderRadius.circular(10.0),
@@ -32,12 +31,14 @@ class _TodoContainerState extends State<TodoContainer> {
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            Text(
-              "My awesome todo",
-              style: TextStyle(
-                color: Colors.white,
-                fontSize: 16.0,
-                fontWeight: FontWeight.w600,
+            Expanded(
+              child: Text(
+                "My awesome todo which is coll and awesome because it is cool",
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 16.0,
+                  fontWeight: FontWeight.w600,
+                ),
               ),
             ),
             Row(
