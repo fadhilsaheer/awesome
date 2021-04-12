@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:todo_app/contanst.dart';
+import 'package:todo_app/models/todo_model.dart';
+import 'package:todo_app/services/todo_helper.dart';
 import 'package:todo_app/widgets/todo_container.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -9,6 +11,9 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   var _newTodoController = TextEditingController();
+  var _todo = Todo();
+
+  TodoHelper _todoHelper = TodoHelper();
 
   @override
   Widget build(BuildContext context) {
@@ -55,9 +60,12 @@ class _HomeScreenState extends State<HomeScreen> {
                   FlatButton(
                     child: Text("Create"),
                     textColor: accentColor,
-                    onPressed: () {
+                    onPressed: () async {
                       if (!_newTodoController.text.isEmpty) {
-                        // save todo
+                        _todo.title = _newTodoController.text;
+                        _todo.isResolved = false;
+                        await _todoHelper.insertData(_todo.todoMap());
+                        Navigator.pop(context);
                       }
                     },
                   ),

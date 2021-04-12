@@ -17,11 +17,8 @@ class TodoHelper {
     return _database;
   }
 
-  insertData(Todo data) async {
+  insertData(data) async {
     var connection = await database;
-    return await connection.insert("todos", {
-      "title": data.title,
-      "isResolved": data.isResolved ? 1 : 0,
-    });
+    return await connection.insert("todos", data);
   }
 }
