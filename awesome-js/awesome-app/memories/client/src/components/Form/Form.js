@@ -6,7 +6,7 @@ import { createPost } from '../../actions/post';
 import FileBase from 'react-file-base64';
 import { TextField, Button, Typography, Paper } from '@material-ui/core';
 
-function Form() {
+function Form({ currentId, setCurrentId }) {
     const classes = useStyles();
     const [postData, setPostData] = useState({creator: '', title: '', message: '', tags: '', selectedFile: '' });
     const dispatch = useDispatch();
