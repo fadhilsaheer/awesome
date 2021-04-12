@@ -8,6 +8,8 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
+  var _newTodoController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -15,7 +17,53 @@ class _HomeScreenState extends State<HomeScreen> {
       floatingActionButton: FloatingActionButton(
         child: Icon(Icons.add, size: 30.0),
         backgroundColor: accentColor,
-        onPressed: () {},
+        onPressed: () {
+          showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertDialog(
+                backgroundColor: secondayrColor,
+                title: Text(
+                  "Create Todo",
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                content: TextField(
+                  controller: _newTodoController,
+                  style: TextStyle(color: Colors.white),
+                  decoration: InputDecoration(
+                    labelText: 'Whats todo ??',
+                    labelStyle: TextStyle(color: Colors.grey),
+                    enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: accentColor, width: 2),
+                    ),
+                    focusedBorder: OutlineInputBorder(
+                      borderSide: BorderSide(color: accentColor, width: 2),
+                    ),
+                  ),
+                ),
+                actions: [
+                  FlatButton(
+                    child: Text("Cancel"),
+                    textColor: Colors.redAccent,
+                    onPressed: () {
+                      _newTodoController.text = '';
+                      Navigator.pop(context);
+                    },
+                  ),
+                  FlatButton(
+                    child: Text("Create"),
+                    textColor: accentColor,
+                    onPressed: () {
+                      print(_newTodoController.text);
+                    },
+                  ),
+                ],
+              );
+            },
+          );
+        },
       ),
       body: ListView(
         physics: BouncingScrollPhysics(),

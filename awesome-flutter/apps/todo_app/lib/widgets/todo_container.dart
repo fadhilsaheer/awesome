@@ -33,7 +33,7 @@ class _TodoContainerState extends State<TodoContainer> {
           children: [
             Expanded(
               child: Text(
-                "My awesome todo which is coll and awesome because it is cool",
+                "My awesome todo",
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
