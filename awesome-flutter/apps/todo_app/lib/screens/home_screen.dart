@@ -19,7 +19,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   void initState() {
     super.initState();
-    getAllTodos();
+    // getAllTodos();
   }
 
   getAllTodos() async {
@@ -88,6 +88,7 @@ class _HomeScreenState extends State<HomeScreen> {
                     textColor: Colors.redAccent,
                     onPressed: () {
                       _newTodoController.text = '';
+                      getAllTodos();
                       Navigator.pop(context);
                     },
                   ),
@@ -109,10 +110,45 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-      body: ListView(
-        physics: BouncingScrollPhysics(),
+      // body: ListView(
+      //   physics: BouncingScrollPhysics(),
+      //   padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
+      //   children: _content,
+      // ),
+      body: SingleChildScrollView(
         padding: EdgeInsets.symmetric(vertical: 50.0, horizontal: 20.0),
-        children: _content,
+        child: Column(
+          children: [
+            Text(
+              "Todos",
+              style: TextStyle(
+                fontSize: 30.0,
+                fontWeight: FontWeight.w600,
+                color: Colors.white,
+              ),
+            ),
+            SizedBox(height: 50.0),
+            Container(
+              height: 50.0,
+              color: Colors.white,
+              width: double.infinity,
+            ),
+            ListView(
+              children: [
+                Container(
+                  height: 50.0,
+                  color: Colors.white,
+                  width: double.infinity,
+                ),
+                Container(
+                  height: 50.0,
+                  color: Colors.white,
+                  width: double.infinity,
+                ),
+              ],
+            )
+          ],
+        ),
       ),
     );
   }
