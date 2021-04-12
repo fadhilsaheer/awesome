@@ -3,7 +3,6 @@ import useStyles from "./style";
 
 import {
   Card,
-  CardActionArea,
   CardContent,
   CardMedia,
   Button,
