@@ -5,9 +5,9 @@ import 'package:todo_app/contanst.dart';
 import 'package:todo_app/models/todo_model.dart';
 
 class TodoContainer extends StatefulWidget {
-  // final Todo todo;
+  final Todo todo;
 
-  // TodoContainer({this.todo});
+  TodoContainer({this.todo});
 
   @override
   _TodoContainerState createState() => _TodoContainerState();
@@ -33,7 +33,7 @@ class _TodoContainerState extends State<TodoContainer> {
           children: [
             Expanded(
               child: Text(
-                "My awesome todo",
+                widget.todo.title,
                 style: TextStyle(
                   color: Colors.white,
                   fontSize: 16.0,
@@ -46,7 +46,7 @@ class _TodoContainerState extends State<TodoContainer> {
                 Theme(
                   data: ThemeData(unselectedWidgetColor: accentColor),
                   child: Checkbox(
-                    value: true,
+                    value: widget.todo.isResolved,
                     activeColor: accentColor,
                     onChanged: (val) {},
                   ),
