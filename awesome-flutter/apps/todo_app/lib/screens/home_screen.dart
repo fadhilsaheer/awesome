@@ -56,7 +56,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Text("Create"),
                     textColor: accentColor,
                     onPressed: () {
-                      print(_newTodoController.text);
+                      if (!_newTodoController.text.isEmpty) {
+                        // save todo
+                      }
                     },
                   ),
                 ],
