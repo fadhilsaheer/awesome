@@ -37,3 +37,7 @@ export const updatePost = async (req, res) => {
 
     res.json(updatedPost);;
 }
+
+export const deletePost = async (req, res) => {
+    
+}
