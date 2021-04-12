@@ -3,5 +3,12 @@ class Todo {
   String title;
   bool isResolved;
 
-  Todo({this.id, this.isResolved, this.title});
+  todoMap() {
+    var mapping = Map<String, dynamic>();
+    mapping['id'] = id;
+    mapping['todo'] = title;
+    mapping['isResolved'] = isResolved ? 1 : 0;
+
+    return mapping;
+  }
 }
