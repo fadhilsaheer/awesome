@@ -21,4 +21,9 @@ class TodoHelper {
     var connection = await database;
     return await connection.insert("todos", data);
   }
+
+  fetchData() async {
+    var connection = await database;
+    connection.query("todos");
+  }
 }
