@@ -25,6 +25,9 @@ function App() {
     return (
        <div className="container mx-auto">
            <ImageSearch searchText={(text)=> setTerm(text)} />
+           {!isLoading && images.length === 0 && (
+                <h1 className="text-5xl text-center mx-auto mt-32">No images found with <span className="text-green-500">{term}</span></h1>
+            )}
            {isLoading ? <h1 className="text-6xl text-center mx-auto mt-32">Loading...</h1> : 
            <div className="grid grid-cols-3 gap-4">
                 {images && images.map(image => (
