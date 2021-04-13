@@ -13,9 +13,21 @@ export function activate(context: vscode.ExtensionContext) {
 	}));
 
 
-	vscode.commands.registerCommand("VsTodo.askQueston", ()=>{
-		vscode.window.showInformationMessage("How was your day ??", "good", "bad");
-	});
+	context.subscriptions.push(vscode.commands.registerCommand("VsTodo.askQuestion", async ()=>{
+		const answer = await vscode.window.showInformationMessage("How was your day ??", "good", "bad");
+
+		if(answer === "bad"){
+			vscode.window.showInformationMessage("Hope the rest of your day is good");
+			return;
+		}
+		if(answer === "good"){
+			vscode.window.showInformationMessage("Well be happy");
+			return;
+		}else{
+			vscode.window.showInformationMessage("Why ??");
+			return;
+		}
+	}));
 }
 
 export function deactivate() {}
