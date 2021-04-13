@@ -14,7 +14,10 @@ function App() {
         fetch(`https://pixabay.com/api/?key=${apiKey}&q=${term}&image_type=photo&pretty=true`)
         .catch(err => console.log(err.message))
         .then(res => res.json())
-        .then(data => console.log(data))
+        .then(data => {
+            setImages(data.hits);
+            setIsLoading(false);
+        })
 
     }, []);
 
