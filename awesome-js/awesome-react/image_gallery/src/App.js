@@ -1,10 +1,22 @@
 import React,{ useState, useEffect } from 'react';
+import API_KEY from './env';
+
+const apiKey = process.env.apiKey || API_KEY;
+
 
 function App() {
     const [images, setImages] = useState([]);
     const [isLoading, setIsLoading] = useState(true);
     const [term, setTerm] = useState('');
-    
+
+
+    useEffect(()=>{
+        fetch(`https://pixabay.com/api/?key=${apiKey}&q=${term}&image_type=photo&pretty=true`)
+        .catch(err => console.log(err.message))
+        .then(res => res.json())
+        .then(data => console.log(data))
+
+    }, []);
 
     return (
         <div className="max-w-sm rounded overflow-hidden shadow-lg">
