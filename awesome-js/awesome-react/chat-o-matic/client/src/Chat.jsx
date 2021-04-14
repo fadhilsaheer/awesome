@@ -4,7 +4,7 @@ import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql, useMutation
 import { Container, Row, Col, FormInput, Button } from 'shards-react';
 
 const client = new ApolloClient({
-    uri: 'http://localhost:4000/',
+    uri: 'http://localhost:8000/',
     cache: new InMemoryCache()
 });
 
@@ -79,7 +79,7 @@ const Messages = ({ user }) => {
 
 const Chat = () => {
     const [state, setState] = React.useState({
-        user: 'me',
+        user: '',
         content: ''
     });
 
