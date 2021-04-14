@@ -99,7 +99,17 @@ const Chat = () => {
                             ...state,
                             content: e.target.value,
                         })}
+                        onKeyUp={(e) => {
+                            if (e.keyCode === 13) {
+                                sendMessage();
+                            }
+                        }}
                     />
+                </Col>
+                <Col xs={2}>
+                    <Button onClick={() => sendMessage()}>
+                        Send
+                    </Button>
                 </Col>
             </Row>
         </Container>
