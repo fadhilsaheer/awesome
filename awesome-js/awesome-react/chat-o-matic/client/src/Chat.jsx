@@ -1,6 +1,6 @@
 import React from 'react';
 
-import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from '@apollo/client';
+import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql, useMutation } from '@apollo/client';
 import { Container, Row, Col, FormInput, Button } from 'shards-react';
 
 const client = new ApolloClient({
@@ -15,6 +15,12 @@ const getMessages = gql`
             content
             user
         }
+    }
+`
+
+const postMessageQuery = gql`
+    mutation($user: String!, $content: String!){
+        postMessage(user: $user, content: $content)
     }
 `
 
@@ -76,6 +82,21 @@ const Chat = () => {
         user: 'me',
         content: ''
     });
+
+
+    const [postMessage] = useMutation(postMessageQuery);
+
+    const sendMessage = () => {
+        if (state.content.length > 0) {
+            postMessage({
+                variables: state,
+            })
+        }
+        setState({
+            ...state,
+            content: "",
+        })
+    }
 
     return (
         <Container>
