@@ -26,24 +26,38 @@ const Messages = ({ user }) => {
 
     return (
         <>
-            {data.messages.map(({ id, user: messageUser, content }) => (
-                <div
-                    style={{
-                        display: 'flex',
-                        justifyContent: messageUser === user ? 'flex-end' : 'flex-start',
-                        paddingBottom: '1em',
-                    }}
-                >
+            {data.messages.map(({ id, user: messageUser, content }) => {
+                const isMe = user === messageUser;
 
-                </div>
-            ))}
+                return (
+                    <div
+                        style={{
+                            display: 'flex',
+                            justifyContent: isMe ? 'flex-end' : 'flex-start',
+                            paddingBottom: '1em',
+                        }}
+                    >
+                        <div
+                            style={{
+                                background: isMe ? '#58bf56' : '#e5e6ea',
+                                color: isMe ? 'white' : 'black',
+                                padding: '1em',
+                                borderRadius: '1em',
+                                maxWidth: '60%',
+                            }}
+                        >
+                            {content}
+                        </div>
+                    </div>
+                );
+            })}
         </>
     );
 }
 
 const Chat = () => {
     return (
-        <Container><Messages user="awesome" /></Container>
+        <Container><Messages user="me" /></Container>
     );
 }
 
