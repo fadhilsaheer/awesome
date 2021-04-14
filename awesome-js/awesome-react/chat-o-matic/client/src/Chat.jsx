@@ -24,7 +24,21 @@ const Messages = ({ user }) => {
         return null;
     }
 
-    return JSON.stringify(data);
+    return (
+        <>
+            {data.messages.map(({ id, user: messageUser, content }) => (
+                <div
+                    style={{
+                        display: 'flex',
+                        justifyContent: messageUser === user ? 'flex-end' : 'flex-start',
+                        paddingBottom: '1em',
+                    }}
+                >
+
+                </div>
+            ))}
+        </>
+    );
 }
 
 const Chat = () => {
