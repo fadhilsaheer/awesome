@@ -1,7 +1,7 @@
 import React from 'react';
 
 import { ApolloClient, InMemoryCache, ApolloProvider, useQuery, gql } from '@apollo/client';
-import { Container } from 'shards-react';
+import { Container, Row, Col, FormInput, Button } from 'shards-react';
 
 const client = new ApolloClient({
     uri: 'http://localhost:4000/',
@@ -72,6 +72,11 @@ const Messages = ({ user }) => {
 }
 
 const Chat = () => {
+    const [chat, setChat] = React.useState({
+        user: 'me',
+        content: ''
+    });
+
     return (
         <Container><Messages user="me" /></Container>
     );
