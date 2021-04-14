@@ -91,6 +91,16 @@ const Chat = () => {
                         })}
                     />
                 </Col>
+                <Col xs={8}>
+                    <FormInput
+                        label='Content'
+                        value={state.content}
+                        onChange={(e) => setState({
+                            ...state,
+                            content: e.target.value,
+                        })}
+                    />
+                </Col>
             </Row>
         </Container>
     );
