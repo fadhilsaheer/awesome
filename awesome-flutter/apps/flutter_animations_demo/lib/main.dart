@@ -1,3 +1,4 @@
+import 'package:animations/animations.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 
@@ -62,10 +63,22 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      body:
-          _showList // TODO: 1) Add PageTransitionSwitcher with FadeThroughTransition
-              ? ListExample()
-              : GridExample(),
+      body: PageTransitionSwitcher(
+        transitionBuilder: (
+          Widget child,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+        ) {
+          return FadeThroughTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+          );
+        },
+        child:
+            _showList // TODO: 1) Add PageTransitionSwitcher with FadeThroughTransition
+                ? ListExample()
+                : GridExample(),
+      ),
       bottomSheet: Padding(
         padding: const EdgeInsets.all(8.0),
         child: SwitchListTile(
