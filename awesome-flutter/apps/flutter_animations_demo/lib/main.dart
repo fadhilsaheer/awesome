@@ -135,26 +135,28 @@ class GridExample extends StatelessWidget {
       itemBuilder: (BuildContext context, int index) {
         return Padding(
           padding: const EdgeInsets.all(8.0),
-          child: GestureDetector(
-            // TODO: 3) Add OpenContainer (container transform)
-            onTap: () => Navigator.of(context).push(
-              MaterialPageRoute(
-                builder: (_) =>
-                    DetailScreen(title: 'Title $index', imageUrl: _image1),
-              ),
-            ),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Image.network(
-                  _image1,
-                  height: 100.0,
-                  fit: BoxFit.cover,
+          child: OpenContainer(
+            transitionType: ContainerTransitionType.fadeThrough,
+            closedBuilder: (BuildContext _, VoidCallback openContainer) {
+              return GestureDetector(
+                onTap: openContainer,
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    Image.network(
+                      _image1,
+                      height: 100.0,
+                      fit: BoxFit.cover,
+                    ),
+                    const SizedBox(height: 8.0),
+                    Text('Title $index'),
+                  ],
                 ),
-                const SizedBox(height: 8.0),
-                Text('Title $index'),
-              ],
-            ),
+              );
+            },
+            openBuilder: (BuildContext _, VoidCallback __) {
+              return DetailScreen(title: 'Title $index', imageUrl: _image1);
+            },
           ),
         );
       },
