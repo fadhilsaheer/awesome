@@ -187,38 +187,50 @@ class _DetailScreenState extends State<DetailScreen> {
       appBar: AppBar(
         title: const Text('Detail Screen'),
       ),
-      body:
-          _largePhoto // TODO: 4) Add PageTransitionSwitcher with SharedAxisTransition (scaled)
-              ? GestureDetector(
-                  onTap: () => setState(() => _largePhoto = !_largePhoto),
-                  child: Image.network(
-                    widget.imageUrl,
-                    height: double.infinity,
-                    width: double.infinity,
-                    fit: BoxFit.cover,
-                  ),
-                )
-              : Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      children: [
-                        GestureDetector(
-                          onTap: () =>
-                              setState(() => _largePhoto = !_largePhoto),
-                          child: Image.network(
-                            widget.imageUrl,
-                            fit: BoxFit.cover,
-                          ),
+      body: PageTransitionSwitcher(
+        transitionBuilder: (
+          Widget child,
+          Animation<double> animation,
+          Animation<double> secondaryAnimation,
+        ) {
+          return SharedAxisTransition(
+            animation: animation,
+            secondaryAnimation: secondaryAnimation,
+            child: child,
+            transitionType: SharedAxisTransitionType.scaled,
+          );
+        },
+        child: _largePhoto
+            ? GestureDetector(
+                onTap: () => setState(() => _largePhoto = !_largePhoto),
+                child: Image.network(
+                  widget.imageUrl,
+                  height: double.infinity,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+              )
+            : Padding(
+                padding: const EdgeInsets.all(20.0),
+                child: SingleChildScrollView(
+                  child: Column(
+                    children: [
+                      GestureDetector(
+                        onTap: () => setState(() => _largePhoto = !_largePhoto),
+                        child: Image.network(
+                          widget.imageUrl,
+                          fit: BoxFit.cover,
                         ),
-                        const SizedBox(height: 20.0),
-                        Text(widget.title),
-                        const SizedBox(height: 20.0),
-                        const Text(_loremIpsumParagraph),
-                      ],
-                    ),
+                      ),
+                      const SizedBox(height: 20.0),
+                      Text(widget.title),
+                      const SizedBox(height: 20.0),
+                      const Text(_loremIpsumParagraph),
+                    ],
                   ),
                 ),
+              ),
+      ),
     );
   }
 }
