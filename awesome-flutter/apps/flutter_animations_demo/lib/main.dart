@@ -102,20 +102,22 @@ class ListExample extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.builder(
       itemBuilder: (BuildContext context, int index) {
-        // TODO: 2) Add OpenContainer (container transform)
-        return ListTile(
-          leading: Image.network(
-            _image0,
-            width: 60.0,
-            fit: BoxFit.cover,
-          ),
-          title: Text('Title $index'),
-          onTap: () => Navigator.of(context).push(
-            MaterialPageRoute(
-              builder: (_) =>
-                  DetailScreen(title: 'Title $index', imageUrl: _image0),
-            ),
-          ),
+        return OpenContainer(
+          transitionType: ContainerTransitionType.fadeThrough,
+          closedBuilder: (BuildContext _, VoidCallback openContainer) {
+            return ListTile(
+              leading: Image.network(
+                _image0,
+                width: 60.0,
+                fit: BoxFit.cover,
+              ),
+              title: Text('Title $index'),
+              onTap: openContainer,
+            );
+          },
+          openBuilder: (BuildContext _, VoidCallback __) {
+            return DetailScreen(title: 'Title $index', imageUrl: _image0);
+          },
         );
       },
     );
