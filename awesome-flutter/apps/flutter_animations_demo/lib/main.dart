@@ -72,6 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return FadeThroughTransition(
             animation: animation,
             secondaryAnimation: secondaryAnimation,
+            child: child,
           );
         },
         child:
