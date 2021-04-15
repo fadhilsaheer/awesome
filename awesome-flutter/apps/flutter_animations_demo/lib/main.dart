@@ -75,10 +75,7 @@ class _HomeScreenState extends State<HomeScreen> {
             child: child,
           );
         },
-        child:
-            _showList // TODO: 1) Add PageTransitionSwitcher with FadeThroughTransition
-                ? ListExample()
-                : GridExample(),
+        child: _showList ? ListExample() : GridExample(),
       ),
       bottomSheet: Padding(
         padding: const EdgeInsets.all(8.0),
@@ -199,20 +196,23 @@ class _DetailScreenState extends State<DetailScreen> {
                 )
               : Padding(
                   padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    children: [
-                      GestureDetector(
-                        onTap: () => setState(() => _largePhoto = !_largePhoto),
-                        child: Image.network(
-                          widget.imageUrl,
-                          fit: BoxFit.cover,
+                  child: SingleChildScrollView(
+                    child: Column(
+                      children: [
+                        GestureDetector(
+                          onTap: () =>
+                              setState(() => _largePhoto = !_largePhoto),
+                          child: Image.network(
+                            widget.imageUrl,
+                            fit: BoxFit.cover,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 20.0),
-                      Text(widget.title),
-                      const SizedBox(height: 20.0),
-                      const Text(_loremIpsumParagraph),
-                    ],
+                        const SizedBox(height: 20.0),
+                        Text(widget.title),
+                        const SizedBox(height: 20.0),
+                        const Text(_loremIpsumParagraph),
+                      ],
+                    ),
                   ),
                 ),
     );
