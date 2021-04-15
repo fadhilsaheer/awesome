@@ -188,6 +188,8 @@ class _DetailScreenState extends State<DetailScreen> {
         title: const Text('Detail Screen'),
       ),
       body: PageTransitionSwitcher(
+        duration: const Duration(milliseconds: 500),
+        reverse: !_largePhoto,
         transitionBuilder: (
           Widget child,
           Animation<double> animation,
