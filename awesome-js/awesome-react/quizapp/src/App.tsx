@@ -16,7 +16,10 @@ function App() {
 
     return (
         <div className="app">
-            <h2>Quizz</h2>
+            <h1>React Quiz</h1>
+            <button className="start" onClick={startTrivia}>Start</button>
+            <p className="score">Score:</p>
+            <p>Loading questions ...</p>
         </div>
     );
 }
