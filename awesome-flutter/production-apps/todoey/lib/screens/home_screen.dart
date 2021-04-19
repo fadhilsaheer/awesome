@@ -11,7 +11,23 @@ class HomeScreen extends StatelessWidget {
         child: Icon(Icons.add, size: 30.0),
         onPressed: () {},
       ),
-      body: SingleChildScrollView(),
+      body: SingleChildScrollView(
+        physics: BouncingScrollPhysics(),
+        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
+        child: Column(
+          children: [
+            Text(
+              "Todos",
+              style: TextStyle(
+                color: appWhite,
+                fontSize: 30.0,
+                fontWeight: FontWeight.w600,
+                letterSpacing: 1.5,
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
