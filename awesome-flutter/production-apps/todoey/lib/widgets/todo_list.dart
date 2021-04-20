@@ -13,12 +13,14 @@ class _TodoListState extends State<TodoList> {
       margin: EdgeInsets.only(top: 20.0),
       child: Column(
         children: [
-          TodoContainer(),
-          TodoContainer(),
-          TodoContainer(),
-          TodoContainer(),
-          TodoContainer(),
-          TodoContainer(),
+          TodoContainer(title: "Create an app", isResolved: false),
+          TodoContainer(title: "Create an app", isResolved: false),
+          TodoContainer(title: "Create an app", isResolved: false),
+          TodoContainer(title: "Create an app", isResolved: false),
+          TodoContainer(title: "Create an app", isResolved: false),
+          TodoContainer(title: "Create an app", isResolved: false),
+          TodoContainer(title: "Create an app", isResolved: false),
+          TodoContainer(title: "Create an app", isResolved: false),
         ],
       ),
     );
