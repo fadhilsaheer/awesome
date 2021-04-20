@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/utils/constanst.dart';
+import 'package:todoey/widgets/todo_list.dart';
 
 class HomeScreen extends StatelessWidget {
   @override
@@ -25,6 +26,7 @@ class HomeScreen extends StatelessWidget {
                 letterSpacing: 1.5,
               ),
             ),
+            TodoList(),
           ],
         ),
       ),
