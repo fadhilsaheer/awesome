@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:todoey/utils/constanst.dart';
 
@@ -30,22 +32,28 @@ class _TodoContainerState extends State<TodoContainer> {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: resolveTask,
-      child: Container(
-        width: double.infinity,
-        padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
-        margin: EdgeInsets.only(top: 15.0),
-        decoration: BoxDecoration(
-          color: _isResolved ? appGreen : appSecondayrColor,
-          borderRadius: BorderRadius.circular(10.0),
-        ),
-        child: Text(
-          _title,
-          style: TextStyle(
-            color: appWhite,
-            fontSize: 20.0,
-            fontWeight: FontWeight.w400,
+    return Dismissible(
+      key: Key(Random().toString()),
+      onDismissed: (direction) {
+        print("dismissed");
+      },
+      child: GestureDetector(
+        onTap: resolveTask,
+        child: Container(
+          width: double.infinity,
+          padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 30.0),
+          margin: EdgeInsets.only(top: 15.0),
+          decoration: BoxDecoration(
+            color: _isResolved ? appGreen : appSecondayrColor,
+            borderRadius: BorderRadius.circular(10.0),
+          ),
+          child: Text(
+            _title,
+            style: TextStyle(
+              color: appWhite,
+              fontSize: 20.0,
+              fontWeight: FontWeight.w400,
+            ),
           ),
         ),
       ),
