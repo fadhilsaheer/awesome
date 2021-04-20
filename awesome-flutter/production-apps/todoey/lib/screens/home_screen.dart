@@ -16,6 +16,7 @@ class HomeScreen extends StatelessWidget {
         physics: BouncingScrollPhysics(),
         padding: EdgeInsets.symmetric(horizontal: 20.0, vertical: 50.0),
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Text(
               "Todos",
