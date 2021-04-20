@@ -38,12 +38,6 @@ class _TodoListState extends State<TodoList> {
     }
   }
 
-  void resolveTask(index) {
-    setState(() {
-      _list[index].isResolved = !_list[index].isResolved;
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Container(
