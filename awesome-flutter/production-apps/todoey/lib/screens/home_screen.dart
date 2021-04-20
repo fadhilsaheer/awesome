@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/utils/constanst.dart';
+import 'package:todoey/widgets/alert_form.dart';
 import 'package:todoey/widgets/todo_list.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -10,7 +11,14 @@ class HomeScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: appGreen,
         child: Icon(Icons.add, size: 30.0),
-        onPressed: () {},
+        onPressed: () {
+          return showDialog(
+            context: context,
+            builder: (BuildContext context) {
+              return AlertForm();
+            },
+          );
+        },
       ),
       body: SingleChildScrollView(
         physics: BouncingScrollPhysics(),
