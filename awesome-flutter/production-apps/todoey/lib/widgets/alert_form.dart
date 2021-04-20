@@ -35,7 +35,11 @@ class _AlertFormState extends State<AlertForm> {
       content: TextField(
         style: TextStyle(color: appWhite),
         cursorColor: appGreen,
-        onChanged: (String value) => todoTitle = value,
+        onChanged: (String value) {
+          setState(() {
+            todoTitle = value;
+          });
+        },
         decoration: InputDecoration(
           labelText: "I wanna do ...",
           labelStyle: TextStyle(color: Colors.grey),
@@ -53,15 +57,18 @@ class _AlertFormState extends State<AlertForm> {
           textColor: Colors.redAccent,
           onPressed: () => Navigator.pop(context),
         ),
-        FlatButton(
-          child: Text("create"),
-          textColor: appGreen,
-          onPressed: () {
-            if (todoTitle != null) {
-              createTodo();
-              Navigator.pop(context);
-            }
-          },
+        Visibility(
+          visible: todoTitle != null && todoTitle != "",
+          child: FlatButton(
+            child: Text("create"),
+            textColor: appGreen,
+            onPressed: () {
+              if (todoTitle != null && todoTitle != "") {
+                createTodo();
+                Navigator.pop(context);
+              }
+            },
+          ),
         ),
       ],
     );
