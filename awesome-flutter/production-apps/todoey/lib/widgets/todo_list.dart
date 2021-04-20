@@ -12,17 +12,17 @@ class _TodoListState extends State<TodoList> {
   DatabaseHelper databaseHelper;
 
   List<Todo> _list = [
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
-    Todo(title: "Create an app", isResolved: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
+    Todo(title: "Create an app", done: false),
   ];
 
   List<Widget> _widgetList = List<Widget>();
@@ -36,7 +36,7 @@ class _TodoListState extends State<TodoList> {
       Todo todo = _list[index];
       _widgetList.add(TodoContainer(
         title: todo.title,
-        isResolved: todo.isResolved,
+        isResolved: todo.done,
       ));
     }
   }
