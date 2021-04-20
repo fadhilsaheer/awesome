@@ -9,4 +9,16 @@ class DatabaseHelper {
   }
 
   static Database _database;
+  String _table = "todos";
+
+  Future<Database> get database async {
+    if (_database != null) return _database;
+    _database = await _databaseConnection.setDatabase();
+    return _database;
+  }
+
+  readData() async {
+    var connection = await database;
+    return connection.query(_table);
+  }
 }
