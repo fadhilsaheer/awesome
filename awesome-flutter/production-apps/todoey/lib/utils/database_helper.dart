@@ -26,4 +26,9 @@ class DatabaseHelper {
     var connection = await database;
     return await connection.insert(_table, data);
   }
+
+  deleteData(id) async {
+    var connection = await database;
+    return await connection.rawDelete("DELETE FROM $_table WHERE id = $id");
+  }
 }
