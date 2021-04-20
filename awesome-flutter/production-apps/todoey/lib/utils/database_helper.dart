@@ -21,4 +21,9 @@ class DatabaseHelper {
     var connection = await database;
     return connection.query(_table);
   }
+
+  insertData(data) async {
+    var connection = await database;
+    return await connection.insert(_table, data);
+  }
 }
