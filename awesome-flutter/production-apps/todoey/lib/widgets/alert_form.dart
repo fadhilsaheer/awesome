@@ -3,13 +3,25 @@ import 'package:todoey/utils/constanst.dart';
 import 'package:todoey/utils/database/database_helper.dart';
 import 'package:todoey/utils/todo_modal.dart';
 
-class AlertForm extends StatelessWidget {
-  DatabaseHelper databaseHelper = DatabaseHelper();
+class AlertForm extends StatefulWidget {
+  @override
+  _AlertFormState createState() => _AlertFormState();
+}
+
+class _AlertFormState extends State<AlertForm> {
+  DatabaseHelper databaseHelper;
+
   String todoTitle;
 
-  void createTodo() {
+  @override
+  void initState() {
+    super.initState();
+    databaseHelper = DatabaseHelper();
+  }
+
+  void createTodo() async {
     Todo todo = Todo(title: todoTitle, done: false);
-    databaseHelper.insertData(todo.convertToDb());
+    await databaseHelper.insertData(todo.convertToDb());
   }
 
   @override
