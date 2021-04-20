@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/utils/database/database_helper.dart';
 import 'package:todoey/utils/todo_modal.dart';
 import 'package:todoey/widgets/todo_container.dart';
 
@@ -8,6 +9,8 @@ class TodoList extends StatefulWidget {
 }
 
 class _TodoListState extends State<TodoList> {
+  DatabaseHelper databaseHelper;
+
   List<Todo> _list = [
     Todo(title: "Create an app", isResolved: false),
     Todo(title: "Create an app", isResolved: false),
@@ -28,6 +31,7 @@ class _TodoListState extends State<TodoList> {
   void initState() {
     super.initState();
 
+    databaseHelper = DatabaseHelper();
     for (int index = 0; index != _list.length; index++) {
       Todo todo = _list[index];
       _widgetList.add(TodoContainer(
