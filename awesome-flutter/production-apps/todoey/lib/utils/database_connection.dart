@@ -11,6 +11,7 @@ class DatabaseConnection {
       version: 1,
       onCreate: _onCreateDatabase,
     );
+    return database;
   }
 
   _onCreateDatabase(Database database, int version) async {
