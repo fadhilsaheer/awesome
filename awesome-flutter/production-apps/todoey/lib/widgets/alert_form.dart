@@ -4,6 +4,8 @@ import 'package:todoey/utils/constanst.dart';
 class AlertForm extends StatelessWidget {
   String todoTitle;
 
+  void createTodo() {}
+
   @override
   Widget build(BuildContext context) {
     return AlertDialog(
@@ -31,15 +33,16 @@ class AlertForm extends StatelessWidget {
         FlatButton(
           child: Text("cancel"),
           textColor: Colors.redAccent,
-          onPressed: () {
-            Navigator.pop(context);
-          },
+          onPressed: () => Navigator.pop(context),
         ),
         FlatButton(
           child: Text("create"),
           textColor: appGreen,
           onPressed: () {
-            print(todoTitle);
+            if (todoTitle != null) {
+              createTodo();
+              Navigator.pop(context);
+            }
           },
         ),
       ],
