@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/scheduler.dart';
 import 'package:todoey/utils/todo_modal.dart';
 import 'package:todoey/widgets/todo_container.dart';
 
