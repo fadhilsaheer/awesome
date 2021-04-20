@@ -1,10 +1,16 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/utils/constanst.dart';
+import 'package:todoey/utils/database/database_helper.dart';
+import 'package:todoey/utils/todo_modal.dart';
 
 class AlertForm extends StatelessWidget {
+  DatabaseHelper databaseHelper = DatabaseHelper();
   String todoTitle;
 
-  void createTodo() {}
+  void createTodo() {
+    Todo todo = Todo(title: todoTitle, done: false);
+    databaseHelper.insertData(todo.convertToDb());
+  }
 
   @override
   Widget build(BuildContext context) {
