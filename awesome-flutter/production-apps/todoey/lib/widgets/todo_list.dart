@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/widgets/todo_container.dart';
 
 class TodoList extends StatefulWidget {
   @override
@@ -8,6 +9,18 @@ class TodoList extends StatefulWidget {
 class _TodoListState extends State<TodoList> {
   @override
   Widget build(BuildContext context) {
-    return Column();
+    return Container(
+      margin: EdgeInsets.only(top: 20.0),
+      child: Column(
+        children: [
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+          TodoContainer(),
+        ],
+      ),
+    );
   }
 }
