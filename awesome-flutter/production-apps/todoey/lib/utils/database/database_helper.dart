@@ -1,5 +1,5 @@
 import 'package:sqflite/sqflite.dart';
-import './database_connection.dart';
+import 'database_connection.dart';
 
 class DatabaseHelper {
   DatabaseConnection _databaseConnection;
