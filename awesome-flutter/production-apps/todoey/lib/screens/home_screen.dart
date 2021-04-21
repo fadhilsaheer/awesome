@@ -1,20 +1,50 @@
 import 'package:flutter/material.dart';
 import 'package:todoey/utils/constanst.dart';
+import 'package:todoey/utils/database/database_helper.dart';
+import 'package:todoey/utils/todo_modal.dart';
 import 'package:todoey/widgets/alert_form.dart';
+import 'package:todoey/widgets/todo_container.dart';
 import 'package:todoey/widgets/todo_list.dart';
 
-class HomeScreen extends StatelessWidget {
+class HomeScreen extends StatefulWidget {
+  @override
+  _HomeScreenState createState() => _HomeScreenState();
+}
+
+class _HomeScreenState extends State<HomeScreen> {
+  DatabaseHelper databaseHelper;
+  List<Widget> widgetList = [];
+
+  @override
+  void initState() {
+    super.initState();
+    databaseHelper = DatabaseHelper();
+    getAllTodos();
+  }
+
+  void getAllTodos() async {
+    List todos = await databaseHelper.readData();
+
+    for (int index = 0; index != todos.length; index++) {
+      final dbTodo = Map.of(todos[index]);
+      Todo todo = Todo(
+        done: dbTodo['done'] == 1,
+        title: dbTodo['title'],
+      );
+      todo.id = dbTodo['id'];
+
+      setState(() {
+        widgetList.add(TodoContainer(
+          title: todo.title,
+          isResolved: todo.done,
+          id: todo.id,
+        ));
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
-    void updateScreen() {
-      Navigator.pushReplacement(
-        context,
-        MaterialPageRoute(
-          builder: (_) => HomeScreen(),
-        ),
-      );
-    }
-
     return Scaffold(
       backgroundColor: appPrimaryColor,
       floatingActionButton: FloatingActionButton(
@@ -24,7 +54,7 @@ class HomeScreen extends StatelessWidget {
           return showDialog(
             context: context,
             builder: (BuildContext context) {
-              return AlertForm(updateScreen: updateScreen);
+              return AlertForm(updateScreen: getAllTodos);
             },
           );
         },
@@ -44,7 +74,7 @@ class HomeScreen extends StatelessWidget {
                 letterSpacing: 1.5,
               ),
             ),
-            TodoList(),
+            TodoList(widgetList: widgetList),
           ],
         ),
       ),
