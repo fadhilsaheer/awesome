@@ -23,10 +23,11 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   void getAllTodos() async {
+    setState(() => widgetList = []);
     List todos = await databaseHelper.readData();
 
     for (int index = 0; index != todos.length; index++) {
-      final dbTodo = Map.of(todos[index]);
+      final dbTodo = Map.of(todos.reversed.toList()[index]);
       Todo todo = Todo(
         done: dbTodo['done'] == 1,
         title: dbTodo['title'],
