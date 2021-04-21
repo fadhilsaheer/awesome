@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:flutter/material.dart';
 import 'package:todoey/utils/constanst.dart';
 import 'package:todoey/utils/database/database_helper.dart';
+import 'package:todoey/utils/todo_modal.dart';
 
 class TodoContainer extends StatefulWidget {
   final String title;
@@ -29,10 +30,12 @@ class _TodoContainerState extends State<TodoContainer> {
     databaseHelper = DatabaseHelper();
   }
 
-  void resolveTask() {
-    setState(() {
-      _isResolved = !_isResolved;
-    });
+  void resolveTask() async {
+    setState(() => _isResolved = !_isResolved);
+    Todo updateData = Todo(title: _title, done: _isResolved);
+    updateData.id = widget.id;
+
+    await databaseHelper.updateData(widget.id, updateData.convertToDb());
   }
 
   @override
