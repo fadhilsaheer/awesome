@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:todoey/screens/home_screen.dart';
 import 'package:todoey/utils/constanst.dart';
 import 'package:todoey/utils/database/database_helper.dart';
 import 'package:todoey/utils/todo_modal.dart';
 
 class AlertForm extends StatefulWidget {
+  final Function updateScreen;
+
+  AlertForm({this.updateScreen});
+
   @override
   _AlertFormState createState() => _AlertFormState();
 }
@@ -65,7 +70,7 @@ class _AlertFormState extends State<AlertForm> {
             onPressed: () {
               if (todoTitle != null && todoTitle != "") {
                 createTodo();
-                Navigator.pop(context);
+                widget.updateScreen();
               }
             },
           ),
