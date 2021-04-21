@@ -14,12 +14,4 @@ class Todo {
 
     return mapping;
   }
-
-  convertFromDb(data) {
-    Todo newData =
-        Todo(title: data['title'], done: data['done'] == 1 ? true : false);
-    newData.id = data['id'];
-
-    return newData;
-  }
 }
