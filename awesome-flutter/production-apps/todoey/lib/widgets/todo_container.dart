@@ -6,8 +6,9 @@ import 'package:todoey/utils/constanst.dart';
 class TodoContainer extends StatefulWidget {
   final String title;
   final bool isResolved;
+  final int id;
 
-  TodoContainer({this.isResolved, this.title});
+  TodoContainer({this.isResolved, this.title, this.id});
 
   @override
   _TodoContainerState createState() => _TodoContainerState();
