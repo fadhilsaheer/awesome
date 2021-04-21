@@ -70,6 +70,7 @@ class _AlertFormState extends State<AlertForm> {
             onPressed: () {
               if (todoTitle != null && todoTitle != "") {
                 createTodo();
+                Navigator.pop(context);
                 widget.updateScreen();
               }
             },
