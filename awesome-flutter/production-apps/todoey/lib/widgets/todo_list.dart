@@ -24,7 +24,8 @@ class _TodoListState extends State<TodoList> {
   }
 
   void getAllTodos() async {
-    var todos = await databaseHelper.readData();
+    List todos = await databaseHelper.readData();
+
     for (int index = 0; index != todos.length; index++) {
       final dbTodo = Map.of(todos[index]);
       Todo todo = Todo(
