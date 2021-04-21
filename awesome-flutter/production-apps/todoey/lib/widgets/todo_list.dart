@@ -11,19 +11,7 @@ class TodoList extends StatefulWidget {
 class _TodoListState extends State<TodoList> {
   DatabaseHelper databaseHelper;
 
-  List<Todo> _list = [
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-    Todo(title: "Create an app", done: false),
-  ];
+  List<Todo> _list = [];
 
   List<Widget> _widgetList = List<Widget>();
 
@@ -32,12 +20,26 @@ class _TodoListState extends State<TodoList> {
     super.initState();
 
     databaseHelper = DatabaseHelper();
-    for (int index = 0; index != _list.length; index++) {
-      Todo todo = _list[index];
-      _widgetList.add(TodoContainer(
-        title: todo.title,
-        isResolved: todo.done,
-      ));
+    getAllTodos();
+  }
+
+  void getAllTodos() async {
+    var todos = await databaseHelper.readData();
+    for (int index = 0; index != todos.length; index++) {
+      final dbTodo = Map.of(todos[index]);
+      Todo todo = Todo(
+        done: dbTodo['done'] == 1,
+        title: dbTodo['title'],
+      );
+      todo.id = dbTodo['id'];
+
+      setState(() {
+        _widgetList.add(TodoContainer(
+          title: todo.title,
+          isResolved: todo.done,
+          id: todo.id,
+        ));
+      });
     }
   }
 
