@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:todoey/utils/constanst.dart';
+import 'package:todoey/utils/database/database_helper.dart';
 
 class TodoContainer extends StatefulWidget {
   final String title;
@@ -18,11 +19,14 @@ class _TodoContainerState extends State<TodoContainer> {
   String _title;
   bool _isResolved;
 
+  DatabaseHelper databaseHelper;
+
   @override
   void initState() {
     super.initState();
     _isResolved = widget.isResolved;
     _title = widget.title;
+    databaseHelper = DatabaseHelper();
   }
 
   void resolveTask() {
@@ -35,8 +39,8 @@ class _TodoContainerState extends State<TodoContainer> {
   Widget build(BuildContext context) {
     return Dismissible(
       key: Key(Random().toString()),
-      onDismissed: (direction) {
-        print("dismissed");
+      onDismissed: (_) async {
+        await databaseHelper.deleteData(widget.id);
       },
       child: GestureDetector(
         onTap: resolveTask,
