@@ -6,6 +6,15 @@ import 'package:todoey/widgets/todo_list.dart';
 class HomeScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    void updateScreen() {
+      Navigator.pushReplacement(
+        context,
+        MaterialPageRoute(
+          builder: (_) => HomeScreen(),
+        ),
+      );
+    }
+
     return Scaffold(
       backgroundColor: appPrimaryColor,
       floatingActionButton: FloatingActionButton(
@@ -15,7 +24,7 @@ class HomeScreen extends StatelessWidget {
           return showDialog(
             context: context,
             builder: (BuildContext context) {
-              return AlertForm();
+              return AlertForm(updateScreen: updateScreen);
             },
           );
         },
