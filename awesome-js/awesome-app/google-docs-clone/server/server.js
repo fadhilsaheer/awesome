@@ -5,9 +5,11 @@ const io = require("socket.io")(5000, {
     }
 });
 
-io.on('connection', socket => {
+console.log("server started");
 
+io.on('connection', socket => {
+    console.log(`client connected ${socket.id}`)
     socket.on('send-changes', delta => {
-        console.log(delta)
+        socket.broadcast.emit('receive-changes', delta);
     })
 });

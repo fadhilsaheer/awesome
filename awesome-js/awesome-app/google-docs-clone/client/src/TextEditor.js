@@ -42,6 +42,21 @@ export default function TextEditor() {
         }
     }, [socket, quill]);
 
+    useEffect(() => {
+        if (socket === null || quill === null) return;
+
+        const handler = delta => {
+            quill.updateContents(delta)
+        }
+        socket.on('receive-change', handler);
+
+        return () => {
+            socket.off('receive-change', handler)
+        }
+    }, [socket, quill]);
+
+
+
     const wrapperRef = useCallback(wrapper => {
         if (wrapper === null) return
 
