@@ -5,4 +5,9 @@ const io = require("socket.io")(5000, {
     }
 });
 
-io.on('connection', socket => {});
+io.on('connection', socket => {
+
+    socket.on('send-changes', delta => {
+        console.log(delta)
+    })
+});
