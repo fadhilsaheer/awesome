@@ -8,8 +8,14 @@ const io = require("socket.io")(5000, {
 console.log("server started");
 
 io.on('connection', socket => {
-    console.log(`client connected ${socket.id}`)
-    socket.on('send-changes', delta => {
-        socket.broadcast.emit('receive-changes', delta);
+    socket.on('get-document', documentId => {
+        const data = "";
+        socket.join(documentId);
+        socket.emit('load-document', data);
+
+        socket.on('send-changes', delta => {
+            socket.broadcast.to(documentId).emit('receive-changes', delta);
+        });
+
     })
 });
