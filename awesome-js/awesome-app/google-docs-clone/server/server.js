@@ -10,7 +10,7 @@ mongoose.connect('mongodb://localhost/google-docs', {
 
 const io = require("socket.io")(5000, {
     cors: {
-        origin: 'http://localhost:27819', // change it accordingly
+        origin: 'http://localhost:3000', // change it accordingly
         methods: ['GET', 'POST']
     }
 });
