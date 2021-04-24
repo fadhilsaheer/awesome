@@ -48,10 +48,10 @@ export default function TextEditor() {
         const handler = delta => {
             quill.updateContents(delta)
         }
-        socket.on('receive-change', handler);
+        socket.on('receive-changes', handler);
 
         return () => {
-            socket.off('receive-change', handler)
+            socket.off('receive-changes', handler)
         }
     }, [socket, quill]);
 
