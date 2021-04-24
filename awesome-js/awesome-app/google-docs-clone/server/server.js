@@ -1,3 +1,12 @@
+const mongoose = require("mongoose");
+
+mongoose.connect('mongodb://localhost/google-docs', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useFindAndModify: false,
+    useCreateIndex: true
+});
+
 const io = require("socket.io")(5000, {
     cors: {
         origin: 'http://localhost:27819', // change it accordingly

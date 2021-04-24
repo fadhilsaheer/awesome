@@ -10,6 +10,7 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "mongoose": "^5.12.5",
     "socket.io": "^4.0.1"
   }
 }
