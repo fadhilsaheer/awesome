@@ -29,7 +29,7 @@ export default function TextEditor() {
     }, []);
 
     useEffect(() => {
-        if (socket === null || quill === null) return;
+        if (!socket || !quill) return;
 
         const handler = (delta, oldDelta, source) => {
             if (source !== "user") return;
@@ -43,7 +43,7 @@ export default function TextEditor() {
     }, [socket, quill]);
 
     useEffect(() => {
-        if (socket === null || quill === null) return;
+        if (!socket || !quill) return;
 
         const handler = delta => {
             quill.updateContents(delta)
