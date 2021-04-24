@@ -1,4 +1,5 @@
 const mongoose = require("mongoose");
+const Document = require("./document");
 
 mongoose.connect('mongodb://localhost/google-docs', {
     useNewUrlParser: true,
@@ -28,3 +29,12 @@ io.on('connection', socket => {
 
     })
 });
+
+async function findOrCreateDocument(id) {
+    if (!id) return;
+
+    const document = await Document.findById(id);
+    if (document) return document;
+
+    return await Document.create({ _id: id, data: "" });
+}
