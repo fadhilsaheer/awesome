@@ -1,7 +1,7 @@
 import Image from 'next/image';
 import { ThumbUpIcon } from '@heroicons/react/outline';
 
-function Thumbnail({ result }) {
+const Thumbnail = ({ result }) => {
     const BASE_URL = 'https://images.tmdb.org/t/p/original/'
 
     return (
