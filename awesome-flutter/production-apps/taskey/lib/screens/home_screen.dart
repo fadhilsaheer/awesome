@@ -13,6 +13,7 @@ class HomeScreen extends StatelessWidget {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
+                SizedBox(height: 100.0),
                 Text(
                   "Taskey",
                   style: TextStyle(
@@ -22,6 +23,7 @@ class HomeScreen extends StatelessWidget {
                     fontWeight: FontWeight.w500,
                   ),
                 ),
+                SizedBox(height: 20.0),
                 Text(
                   "Take notes, reminders, saet targets,\ncollect resources, and secure privacy",
                   style: TextStyle(
@@ -30,6 +32,7 @@ class HomeScreen extends StatelessWidget {
                     fontFamily: 'nunito',
                   ),
                 ),
+                SizedBox(height: 40.0),
                 FlatButton(
                   onPressed: () {},
                   padding: EdgeInsets.symmetric(
