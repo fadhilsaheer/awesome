@@ -27,4 +27,7 @@ flutter:
     - family: font
       fonts:
         - asset: fonts/font.ttf
+    - family: nunito
+      fonts:
+        - asset: fonts/nunito.ttf
   
