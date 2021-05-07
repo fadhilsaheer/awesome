@@ -32,8 +32,19 @@ class HomeScreen extends StatelessWidget {
                 ),
                 FlatButton(
                   onPressed: () {},
-                  child: Text("Get Started"),
+                  padding: EdgeInsets.symmetric(
+                    vertical: 15.0,
+                    horizontal: 25.0,
+                  ),
+                  child: Text(
+                    "Get Started",
+                    style: TextStyle(fontSize: 20.0, fontFamily: 'nunito'),
+                  ),
                   color: appPrimaryAccent,
+                  textColor: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(30.0),
+                  ),
                 )
               ],
             ),
