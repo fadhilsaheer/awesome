@@ -25,7 +25,8 @@ class HomeScreen extends StatelessWidget {
                 ),
                 SizedBox(height: 20.0),
                 Text(
-                  "Take notes, reminders, saet targets,\ncollect resources, and secure privacy",
+                  "Take notes, reminders, set targets,\ncollect resources, and secure privacy",
+                  textAlign: TextAlign.center,
                   style: TextStyle(
                     color: Colors.grey,
                     fontSize: 20.0,
