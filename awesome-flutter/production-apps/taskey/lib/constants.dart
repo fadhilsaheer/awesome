@@ -1,4 +1,8 @@
+import 'dart:ui';
+
 import 'package:flutter/material.dart';
+
+// colors
 
 const Color appPrimaryColor = Color(0xFF1F1D2B);
 const Color appSecondaryColor = Color(0xFF272636);
