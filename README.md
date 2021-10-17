@@ -12,7 +12,7 @@
 
 Instead of maintaining entire directory 📂
 i made a github org for this purpose 😀
-<a href="https://github.com/your-code-is-my-property">check the organization</a>
+<a href="https://github.com/octoi">check the organization</a>
 <br />
 > ❗ This repo no longer be maintained
 <p style="font-size: 20px; font-weight: bold">
